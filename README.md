@@ -18,7 +18,7 @@ Augustin Preda
 ## 3rd party libraries
 ======================
 - Dirent API for Microsoft Visual Studio (http://softagalleria.net/dirent.php)
-      - version:
+      - version: 1.20s
       - licenst: MIT
 - SimpleIni (http://code.jellycan.com/simpleini/) 
       - version: 4.14
