@@ -143,6 +143,10 @@ SET (SOURCE_FILES_SYSTEM
   ./guslib/system/commandline.h
   ./guslib/system/custommutex.cpp
   ./guslib/system/custommutex.h
+  ./guslib/system/dynamiclib.cpp
+  ./guslib/system/dynamiclib.h
+  ./guslib/system/dynamiclibmanager.cpp
+  ./guslib/system/dynamiclibmanager.h
   ./guslib/system/processrunner.cpp
   ./guslib/system/processrunner.h
   ./guslib/system/random.cpp
