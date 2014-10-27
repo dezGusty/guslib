@@ -144,18 +144,19 @@ namespace guslib
 #ifdef __GNUC__
         __extension__
 #endif
-          DLL_STOP_PLUGIN pFunc = (DLL_STOP_PLUGIN)(*it)->getSymbol("dllStopPlugin");
+        DLL_STOP_PLUGIN pFunc = (DLL_STOP_PLUGIN)(*it)->getSymbol("dllStopPlugin");
+        
         // this must call uninstallPlugin
         pFunc();
+        
         // Unload library (destroyed by DynLibManager)
         DynamicLibManager::get().unload(*it);
         impl_->dynLibList_.erase(it);
         return;
       }
     }
-   
   }
-  
+
 }
 
 

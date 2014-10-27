@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GUSLIB_SYSTEM_DYNAMICLIB_H_
+#define GUSLIB_SYSTEM_DYNAMICLIB_H_
 
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
@@ -100,14 +101,14 @@ namespace guslib
     /**
       Constructor.
     */
-    DynamicLib(const std::string& name);
+    explicit DynamicLib(const std::string& name);
 
     /**
       Copy constructor. Would you really need this?
       Not sure yet. Could be removed in a future version.
     */
     DynamicLib(const DynamicLib& rhs);
-    
+
     /**
       Destructor.
     */
@@ -137,3 +138,5 @@ namespace guslib
     void* getSymbol(const std::string& strName) const throw();
   };
 }
+
+#endif

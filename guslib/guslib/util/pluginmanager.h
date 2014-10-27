@@ -1,5 +1,5 @@
-#ifndef GUSLIB_PLUGINMANAGER_H
-#define GUSLIB_PLUGINMANAGER_H
+#ifndef GUSLIB_UTIL_PLUGINMANAGER_H_
+#define GUSLIB_UTIL_PLUGINMANAGER_H_
 
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
@@ -111,4 +111,4 @@ namespace guslib
   typedef guslib::Singleton<PluginManagerUtil> PluginManager;
 }
 
-#endif
+#endif  // GUSLIB_UTIL_PLUGINMANAGER_H_

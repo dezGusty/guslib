@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GUSLIB_SYSTEM_DYNAMICLIBMANAGER_H_
+#define GUSLIB_SYSTEM_DYNAMICLIBMANAGER_H_
 
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
@@ -65,7 +66,6 @@ namespace guslib
     typedef std::map<std::string, DynamicLib*> DynamicLibList;
 
   public:
-
     /**
       Constructor.
     */
@@ -95,3 +95,5 @@ namespace guslib
   // Re-type the utility class into something with a nicer name.
   typedef guslib::Singleton<DynamicLibManagerUtil> DynamicLibManager;
 }
+
+#endif

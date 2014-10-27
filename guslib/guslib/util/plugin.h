@@ -1,5 +1,5 @@
-#ifndef GUSLIB_PLUGIN_H
-#define GUSLIB_PLUGIN_H
+#ifndef GUSLIB_UTIL_PLUGIN_H_
+#define GUSLIB_UTIL_PLUGIN_H_
 
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
@@ -54,8 +54,19 @@ namespace guslib
   class Plugin
   {
   public:
-    Plugin() {}
-    virtual ~Plugin() {}
+    /**
+      Constructor. Empty.
+    */
+    Plugin()
+    {
+    }
+
+    /**
+      Destructor. Empty.
+    */
+    virtual ~Plugin()
+    {
+    }
 
     /**
       Get the name of the plugin. 
@@ -64,12 +75,27 @@ namespace guslib
 
     /**
       Perform the plugin initial installation sequence.
+      This function should be called from the plugin manager after the file is loaded.
     */
     virtual void install() = 0;
+
+    /**
+      Perform the post-install initialization sequence.
+      This function should be called from the plugin manager immediately after the install.
+    */
     virtual void initialize() = 0;
+
+    /**
+      Prepare the shutdown of the plugin.
+      This function should be called from the plugin manager immediately before the uninstall.
+    */
     virtual void shutdown() = 0;
+
+    /**
+      Perform the plugin clean-up / uninstall sequence.
+    */
     virtual void uninstall() = 0;
   };
 }
 
-#endif
+#endif  // GUSLIB_UTIL_PLUGIN_H_
