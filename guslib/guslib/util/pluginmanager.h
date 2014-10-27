@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GUSLIB_PLUGINMANAGER_H
+#define GUSLIB_PLUGINMANAGER_H
 
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
@@ -23,10 +24,10 @@
 //   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //   THE SOFTWARE.
 //
-//   Dynamic library support class, based on the design of plugins in the OGRE3D library
+//   A simple plugin class.
 //
-//   Last change:  $LastChangedDate$
-//   Revision:    $Revision$
+//   Last change:  $LastChangedDate: 2013-06-20 23:19:27 +0200 (J, 20 iun. 2013) $
+//   Revision:    $Revision: 574 $
 
 //
 // Includes
@@ -40,58 +41,74 @@
 //
 // C++ system headers
 //
-#include <string>
+
 #include <map>
+#include <string>
 
 //
-// This library's headers
+// This library's headers.
 //
 #include "guslib/common/singleton.hpp"
-#include "guslib/system/dynamiclib.h"
+#include "guslib/util/plugin.h"
 
 namespace guslib
 {
   /**
-    Utility class to function as a single entry point for handling dynamically loaded libraries.
+    Utility class to function as a single entry point for handling plugins.
     Follows the design present in the OGRE3D library.
   */
-  class GUSLIB_EXPORT_SYMBOL DynamicLibManagerUtil
+  class GUSLIB_EXPORT_SYMBOL PluginManagerUtil
   {
   private:
     class Impl;
     Impl* impl_;
 
-  protected:
-    typedef std::map<std::string, DynamicLib*> DynamicLibList;
-
   public:
-
     /**
       Constructor.
     */
-    DynamicLibManagerUtil();
+    PluginManagerUtil();
 
     /**
       Copy constructor is disabled.
     */
-    DynamicLibManagerUtil(const DynamicLibManagerUtil&) = delete;
+    PluginManagerUtil(const PluginManagerUtil&) = delete;
 
     /**
       Destructor.
     */
-    virtual ~DynamicLibManagerUtil();
+    virtual ~PluginManagerUtil();
 
     /**
-      Load a library.
+      Install a plugin. 
+      Load it and perform post-load steps.
     */
-    DynamicLib* load(const std::string& filename);
+    void install(Plugin* pluginPtr);
 
     /**
-      Unload a library.
+      Unload the plugin. Perform any steps required to cleanly release resources inside the plugin
+      prior to the actual unload.
     */
-    void unload(DynamicLib* lib);
+    void uninstall(Plugin* pluginPtr);
+
+    /**
+      Manually load a plugin found in a DLL/DSO.
+      The specified DLL is expected to implement a "dllStartPlugin"
+      function which instantiates a Plugin subclass and calls PluginManagerUtil::install.
+      It should also implement dllStopPlugin (see Root::unloadPlugin)
+    */
+    void loadPluginByName(const std::string& pluginName);
+
+    /**
+      Manually unload a Plugin found in a DLL / DSO.
+      This method will call the "dllStopPlugin" function defined in the DLL, which in turn should call
+      PluginManagerUtil::uninstall.
+    */
+    void unloadPluginByName(const std::string& pluginName);
   };
 
   // Re-type the utility class into something with a nicer name.
-  typedef guslib::Singleton<DynamicLibManagerUtil> DynamicLibManager;
+  typedef guslib::Singleton<PluginManagerUtil> PluginManager;
 }
+
+#endif

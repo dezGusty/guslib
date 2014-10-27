@@ -31,7 +31,7 @@
 //
 
 // Own header
-#include "dynamiclibmanager.h"
+#include "guslib/system/dynamiclibmanager.h"
 
 namespace guslib
 {

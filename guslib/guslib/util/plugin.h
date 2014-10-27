@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GUSLIB_PLUGIN_H
+#define GUSLIB_PLUGIN_H
 
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
@@ -23,10 +24,10 @@
 //   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //   THE SOFTWARE.
 //
-//   Dynamic library support class, based on the design of plugins in the OGRE3D library
+//   A simple plugin class.
 //
-//   Last change:  $LastChangedDate$
-//   Revision:    $Revision$
+//   Last change:  $LastChangedDate: 2013-06-20 23:19:27 +0200 (J, 20 iun. 2013) $
+//   Revision:    $Revision: 574 $
 
 //
 // Includes
@@ -40,58 +41,35 @@
 //
 // C++ system headers
 //
-#include <string>
-#include <map>
 
-//
-// This library's headers
-//
-#include "guslib/common/singleton.hpp"
-#include "guslib/system/dynamiclib.h"
+#include <map>
+#include <string>
+#include <vector>
 
 namespace guslib
 {
   /**
-    Utility class to function as a single entry point for handling dynamically loaded libraries.
-    Follows the design present in the OGRE3D library.
+    The interface for a simple plugin.
   */
-  class GUSLIB_EXPORT_SYMBOL DynamicLibManagerUtil
+  class Plugin
   {
-  private:
-    class Impl;
-    Impl* impl_;
-
-  protected:
-    typedef std::map<std::string, DynamicLib*> DynamicLibList;
-
   public:
+    Plugin() {}
+    virtual ~Plugin() {}
 
     /**
-      Constructor.
+      Get the name of the plugin. 
     */
-    DynamicLibManagerUtil();
+    virtual const std::string& getName() const = 0;
 
     /**
-      Copy constructor is disabled.
+      Perform the plugin initial installation sequence.
     */
-    DynamicLibManagerUtil(const DynamicLibManagerUtil&) = delete;
-
-    /**
-      Destructor.
-    */
-    virtual ~DynamicLibManagerUtil();
-
-    /**
-      Load a library.
-    */
-    DynamicLib* load(const std::string& filename);
-
-    /**
-      Unload a library.
-    */
-    void unload(DynamicLib* lib);
+    virtual void install() = 0;
+    virtual void initialize() = 0;
+    virtual void shutdown() = 0;
+    virtual void uninstall() = 0;
   };
-
-  // Re-type the utility class into something with a nicer name.
-  typedef guslib::Singleton<DynamicLibManagerUtil> DynamicLibManager;
 }
+
+#endif

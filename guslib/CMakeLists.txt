@@ -194,6 +194,9 @@ SET (SOURCE_FILES_UTIL
   ./guslib/util/filehelper.cpp
   ./guslib/util/filehelper.h
   ./guslib/util/inifile.h
+  ./guslib/util/plugin.h
+  ./guslib/util/pluginmanager.cpp
+  ./guslib/util/pluginmanager.h
   ./guslib/util/stringutil.cpp
   ./guslib/util/stringutil.h
 )
