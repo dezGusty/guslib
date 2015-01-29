@@ -43,16 +43,6 @@
 //
 #include <guslib/guslibbuildopts.h>
 
-//
-// C system headers
-//
-
-#include <windows.h>
-#include <strsafe.h>
-
-
-// none
-
 namespace guslib
 {
   /**

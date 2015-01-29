@@ -43,8 +43,11 @@
 // C system headers
 //
 
-#include <windows.h>
-#include <strsafe.h>
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
+#include <guslib/system/systemwindowsfwd.h>
+#else
+# pragma message("Warning: UAC elevation not defined for non-windows environments");
+#endif
 
 //
 // C++ system headers
@@ -60,6 +63,7 @@ namespace guslib
   */
   bool UAC::isRunningAsAdmin()
   {
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
     BOOL isBeingRunAsAdmin = FALSE;
     DWORD dwError = ERROR_SUCCESS;
     PSID ptrAdministratorsGroup = NULL;
@@ -110,7 +114,10 @@ namespace guslib
       }
     }
 
-    return static_cast<bool>(isBeingRunAsAdmin);
+    return isBeingRunAsAdmin != 0;
+#else
+    return false;
+#endif
   }
 
 
@@ -120,6 +127,7 @@ namespace guslib
   */
   bool UAC::isElevated()
   {
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
     bool elevated = false;
     HANDLE hToken = NULL;
     if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken)) 
@@ -128,7 +136,7 @@ namespace guslib
       DWORD cbSize = sizeof(TOKEN_ELEVATION);
       if (GetTokenInformation(hToken, TokenElevation, &Elevation, sizeof(Elevation), &cbSize)) 
       {
-        elevated = static_cast<bool>(Elevation.TokenIsElevated);
+        elevated = Elevation.TokenIsElevated != 0;
       }
     }
 
@@ -138,6 +146,9 @@ namespace guslib
     }
 
     return elevated;
+#else
+    return false;
+#endif
   }
   
 
@@ -149,6 +160,7 @@ namespace guslib
   */
   bool UAC::relaunchForManualElevation(bool quitIfElevationDenied)
   {
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
     wchar_t szPath[MAX_PATH];
     if (GetModuleFileName(NULL, szPath, ARRAYSIZE(szPath)))
     {
@@ -156,7 +168,6 @@ namespace guslib
       SHELLEXECUTEINFO sei = { sizeof(sei) };
       sei.lpVerb = L"runas";
       sei.lpFile = szPath;
-      //sei.hwnd = hWnd;
       sei.nShow = SW_NORMAL;
 
       if (!ShellExecuteEx(&sei))
@@ -176,12 +187,15 @@ namespace guslib
       {
         // Managed to launch a second instance of itself...
         // Ok... let's quit.
-        // This is a quick and dirty solution, no cleanup of used resources (handles/open connections/ports) is performed.
+        // This is a quick and dirty solution; no cleanup of used resources (handles/open connections/ports).
         // Note: look at guslib/system/apprestart.h for a more thorough use of a restarter.
         return true;
       }
     }
 
     return false;
+#else
+    return false;
+#endif
   }
 }
