@@ -75,9 +75,9 @@
 #define GUSLIB_NUM_MAJOR_VER_SIMPLE 1
 
 // Minor versions. Please keep in sync!
-#define GUSLIB_NUM_MINOR_VER_SIMPLE 7
-#define GUSLIB_NUM_MINOR_VER_2DIGITS 07
-#define GUSLIB_NUM_MINOR_VER_3DIGITS 007
+#define GUSLIB_NUM_MINOR_VER_SIMPLE 8
+#define GUSLIB_NUM_MINOR_VER_2DIGITS 08
+#define GUSLIB_NUM_MINOR_VER_3DIGITS 008
 
 // Patch versions. Please keep in sync!
 #define GUSLIB_NUM_PATCH_VER_SIMPLE 0.0

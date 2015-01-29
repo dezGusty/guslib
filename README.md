@@ -37,3 +37,9 @@ The library can be used either in a project:
 - by linking the library dinamically into the project. One needs to generate the library (or obtain a generated copy), 
 then to include the required headers in the project and also link to the library (.lib) file.
 - by linking the library statically into the project. You would nee to manually update your generated project file, or the CMakeLists.txt file for this.
+
+## History
+==========
+2015.01.29
+----------
+Added a small helper class for UAC elevation.
