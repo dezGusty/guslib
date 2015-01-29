@@ -4,7 +4,7 @@
 guslib (short for General UtilitieS LIBrary) is a C++ library, licensed under the terms of the MIT software license.
 
 ## Introduction
-===============
+---------------
 guslib is a small C++ utility library. It includes other small libraries to provide basic functionality for:
 - handling XML files
 - handling INI files 
@@ -12,11 +12,11 @@ guslib is a small C++ utility library. It includes other small libraries to prov
 - clock and timer
 
 ## Author(s)
-============
+------------
 Augustin Preda
 
 ## 3rd party libraries
-======================
+----------------------
 - Dirent API for Microsoft Visual Studio (http://softagalleria.net/dirent.php)
       - version: 1.20s
       - licenst: MIT
@@ -31,7 +31,7 @@ Augustin Preda
       - license: zlib/libpng
 
 ## Using the library
-====================
+--------------------
 The library can be used either in a project:
 - by including the code directly into the project
 - by linking the library dinamically into the project. One needs to generate the library (or obtain a generated copy), 
@@ -39,7 +39,7 @@ then to include the required headers in the project and also link to the library
 - by linking the library statically into the project. You would nee to manually update your generated project file, or the CMakeLists.txt file for this.
 
 ## History
-==========
-2015.01.29
 ----------
-Added a small helper class for UAC elevation.
+### 2015.01.29
+- Version 1.8.0
+- Added a small helper class for UAC elevation.
