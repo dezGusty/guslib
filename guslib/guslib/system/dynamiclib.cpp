@@ -31,7 +31,12 @@
 //
 
 // Own header
-#include "dynamiclib.h"
+#include "guslib/system/dynamiclib.h"
+
+//
+// C++ system headers
+//
+#include <string>
 
 //
 // This libraries' headers
@@ -42,7 +47,6 @@
 
 namespace guslib
 {
-
   //
   // ----------------------------- Dynamic Lib item internals ---------------------------------
   //
@@ -62,18 +66,17 @@ namespace guslib
   //
   // ----------------------------- Dynamic Lib implementation ---------------------------------
   //
-  
+
   DynamicLib::DynamicLib(const std::string& name)
     : impl_(new DynamicLib::Impl(name))
   {
     instance_ = NULL;
-
   }
 
   DynamicLib::DynamicLib(const DynamicLib& rhs)
     : impl_(new DynamicLib::Impl(*rhs.impl_))
   {
-
+    instance_ = NULL;
   }
 
   DynamicLib::~DynamicLib()
@@ -82,8 +85,8 @@ namespace guslib
   }
 
   const std::string& DynamicLib::getName(void) const
-  { 
-    return impl_->name_; 
+  {
+    return impl_->name_;
   }
 
   //-----------------------------------------------------------------------
@@ -106,7 +109,9 @@ namespace guslib
     // Although LoadLibraryEx will add .dll itself when you only specify the library name,
     // if you include a relative path then it does not. So, add it to be sure.
     if (name.substr(name.find_last_of(".") + 1) != "dll")
+    {
       name += ".dll";
+    }
 #endif
     instance_ = (DYNAMICLIB_HANDLE)DYNAMICLIB_LOAD(guslib::stringutil::StringToWString(name).c_str());
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_APPLE
@@ -131,7 +136,6 @@ namespace guslib
     {
       throw new SimpleException("Could not unload a library");
     }
-
   }
 
   //-----------------------------------------------------------------------
@@ -139,5 +143,4 @@ namespace guslib
   {
     return (void*)DYNAMICLIB_GETSYM(instance_, strName.c_str());
   }
-
 }

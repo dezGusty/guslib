@@ -86,7 +86,14 @@ namespace guslib
   }
 
   GMenuItem::GMenuItem(const GMenuItem& rhs)
-    : impl_(new GMenuItem::Impl(*rhs.impl_))
+    : impl_(new GMenuItem::Impl(*rhs.impl_)),
+      ptrToMenu(rhs.ptrToMenu),
+      auxData(rhs.auxData),
+      childWrap(rhs.childWrap),
+      selected(rhs.selected),
+      ptrToParent(rhs.ptrToParent),
+      childSelectionIndex(rhs.childSelectionIndex),
+      itemDepth(rhs.itemDepth)
   {
 
   }
@@ -475,7 +482,7 @@ namespace guslib
     delete impl_;
   }
 
-  const std::string& GMenuOption::getType() const
+  const std::string& GMenuOption::getType()
   {
     return impl_->type_;
   }

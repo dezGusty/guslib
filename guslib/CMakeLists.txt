@@ -156,6 +156,8 @@ SET (SOURCE_FILES_SYSTEM
   ./guslib/system/systemwindowsfwd.h
   ./guslib/system/timer.cpp
   ./guslib/system/timer.h
+  ./guslib/system/uacelevation.cpp
+  ./guslib/system/uacelevation.h
 )
 
 SET (SOURCE_FILES_THIRDPARTY

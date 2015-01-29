@@ -289,7 +289,7 @@ namespace guslib
 
     // Caption getter and setter.
     virtual const std::string& getCaption();
-    virtual const std::string& getType() const;
+    virtual const std::string& getType();
 
     // Override the hdl.
     virtual void reactToCommand(GMenuCommand cmd);

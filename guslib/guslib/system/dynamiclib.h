@@ -39,6 +39,15 @@
 #include <guslib/guslibbuildopts.h>
 
 //
+// C system headers.
+//
+
+// Include OS specific headers.
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
+#include <guslib/system/systemwindowsfwd.h>
+#endif  // GUSLIB_PLATFORM_TYPE
+
+//
 // C++ system headers.
 //
 #include <string>
@@ -52,29 +61,26 @@
 // Define some macros for the functions used to load the DLLs on Windows, .so files on Linux, etc.
 // This could probably be improved
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
-#include <Windows.h>
-
 #    define DYNAMICLIB_HANDLE hInstance
-#    define DYNAMICLIB_LOAD( a ) LoadLibraryEx( a, NULL, 0 ) // we can not use LOAD_WITH_ALTERED_SEARCH_PATH with relative paths
-//#    define DYNAMICLIB_LOAD( a ) LoadPackagedLibrary( UTFString(a).asWStr_c_str(), 0 )
-#    define DYNAMICLIB_GETSYM( a, b ) GetProcAddress( a, b )
-#    define DYNAMICLIB_UNLOAD( a ) !FreeLibrary( a )
+#    define DYNAMICLIB_LOAD(a) LoadLibraryEx(a, NULL, 0)
+#    define DYNAMICLIB_GETSYM(a, b) GetProcAddress(a, b)
+#    define DYNAMICLIB_UNLOAD(a) !FreeLibrary(a)
 
 struct HINSTANCE__;
 typedef struct HINSTANCE__* hInstance;
 
 #elif GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX || GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_ANDROID || GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_NACL || GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_FLASHCC
 #    define DYNAMICLIB_HANDLE void*
-#    define DYNAMICLIB_LOAD( a ) dlopen( a, RTLD_LAZY | RTLD_GLOBAL)
-#    define DYNAMICLIB_GETSYM( a, b ) dlsym( a, b )
-#    define DYNAMICLIB_UNLOAD( a ) dlclose( a )
+#    define DYNAMICLIB_LOAD(a) dlopen(a, RTLD_LAZY | RTLD_GLOBAL)
+#    define DYNAMICLIB_GETSYM(a, b) dlsym(a, b)
+#    define DYNAMICLIB_UNLOAD(a) dlclose(a)
 
 #elif GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_APPLE || GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_APPLE_IOS
 #    define DYNAMICLIB_HANDLE void*
-#    define DYNAMICLIB_LOAD( a ) mac_loadDylib( a )
-#    define FRAMEWORK_LOAD( a ) mac_loadFramework( a )
-#    define DYNAMICLIB_GETSYM( a, b ) dlsym( a, b )
-#    define DYNAMICLIB_UNLOAD( a ) dlclose( a )
+#    define DYNAMICLIB_LOAD(a) mac_loadDylib(a)
+#    define FRAMEWORK_LOAD(a) mac_loadFramework(a)
+#    define DYNAMICLIB_GETSYM(a, b) dlsym(a, b)
+#    define DYNAMICLIB_UNLOAD(a) dlclose(a)
 
 #endif
 
@@ -139,4 +145,4 @@ namespace guslib
   };
 }
 
-#endif
+#endif  // GUSLIB_SYSTEM_DYNAMICLIB_H_

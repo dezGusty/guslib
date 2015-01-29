@@ -124,6 +124,7 @@ namespace guslib
       {
         std::string message{ "Cannot find symbol [dllStartPlugin] in library: " };
         message.append(pluginName);
+        throw guslib::SimpleException(message.c_str());
       }
 
       // This must call installPlugin
