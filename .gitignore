@@ -29,4 +29,5 @@
 
 # Custom files
 build/
+build64/
 guslib/guslib/guslibbuildopts.h
