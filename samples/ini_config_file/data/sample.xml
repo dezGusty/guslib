@@ -1,0 +1,9 @@
+<config>
+	<general>
+		<option1>value1</option1>
+		<multioption1>multivalue1</multioption1>
+    <multioption1>multivalue2</multioption1>
+    <multioption1>multivalue3</multioption1>
+    <multioption1>multivalue4</multioption1>
+	</general>
+</config>

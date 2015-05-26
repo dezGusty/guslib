@@ -23,24 +23,11 @@
 # THE SOFTWARE.
 #-------------------------------------------------------------------
 
-# Configure Components build
+
 cmake_minimum_required(VERSION 3.0)
 
-# 
-# Specify some user configurable options
-# 
-OPTION(GUSLIB_BUILD_CORE "Build the core lib" ON)
-OPTION(GUSLIB_BUILD_SAMPLES "Build the sample projects" ON)
+add_subdirectory(ini_config_file)
+add_subdirectory(logging_tracing)
+# add_subdirectory(uac_elevation_demo)
 
 
-PROJECT(guslib)
-
-IF (GUSLIB_BUILD_CORE)
-  ADD_SUBDIRECTORY(guslib)
-ENDIF ()
-
-
-
-IF (GUSLIB_BUILD_SAMPLES)
-	ADD_SUBDIRECTORY(samples)
-ENDIF ()
