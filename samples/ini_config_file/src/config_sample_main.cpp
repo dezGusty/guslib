@@ -51,17 +51,18 @@ public:
   SampleXmlLoader()
     : guslib::config::Loader()
   {
-
-  
+    std::cout << "SampleXmlLoader CTOR" << std::endl;
   }
 
   virtual bool load(guslib::config::Configuration & configToLoad, const std::string& fileName)
   {
+    std::cout << "Loading [" << fileName << "]" << std::endl;
     return true;
   }
 
   virtual void save(guslib::config::Configuration & configToSave, const std::string& fileName)
   {
+    std::cout << "Saving [" << fileName << "]" << std::endl;
     // nothing.
   }
 
@@ -69,21 +70,29 @@ public:
 
 void main()
 {
-  GSTARTTRACING("tracing_sample_1.log", 5);
-  
+  GSTARTTRACING("config_sample_1.log", 10);
+  GTRACE(3, "Started tracing");
+
   try
   {
     guslib::config::Configuration sample_config;
     guslib::config::LoaderFactory::getPtr()->Register("xml", SampleXmlLoader::createLoader);
 
-    sample_config.load("data/sample.xml");
+    sample_config.load("data/sample.ini");
 
-    GTRACE(3, "Started tracing");
+    GTRACE(3, "Creating property group using local context");
+#if 0
+    guslib::config::PropertyGroup sample_group("x1");
 
+    guslib::config::PropertyGroup second_group("x2"); //xxx
+
+    sample_group = second_group;
+#endif
     guslib::config::PropertyGroup sample_group;
+    GTRACE(3, "Copying object with assignment");
     sample_group = sample_config.getGroup("general");
     std::cout << "A group was found using the name: " << sample_group.getName() << std::endl;
-    
+
     // Display all the properties in the group.
     std::vector<guslib::config::Property> props;
     props = sample_group.getProperties();
