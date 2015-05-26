@@ -38,6 +38,7 @@
 //
 // C++ system includes
 //
+#include <string>
 
 namespace guslib
 {

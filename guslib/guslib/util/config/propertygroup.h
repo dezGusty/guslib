@@ -1,10 +1,10 @@
-#ifndef GUS_LIB_CONFIGURATION_PROPERTY_GROUP_H
-#define GUS_LIB_CONFIGURATION_PROPERTY_GROUP_H
+#ifndef GUSLIB_UTIL_CONFIG_PROPERTYGROUP_H_
+#define GUSLIB_UTIL_CONFIG_PROPERTYGROUP_H_
 
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2015  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,6 @@
 //
 //   Application configuration utility.
 //
-//   Last change:  $LastChangedDate: 2014-07-04 08:56:45 +0300 (V, 04 iul. 2014) $
-//   Revision:    $Revision: 663 $
 
 //
 // Includes
@@ -45,32 +43,53 @@
 #include <string>
 #include <vector>
 
+//
+// This library's headers
+//
+
 #include "guslib/util/config/property.h"
 
 namespace guslib
 {
   namespace config
   {
-    /**
-      A group of configuration properties.
-      E.g. A set of network related application options could be a group. A set of UI related options could be
-      another group.
-      */
+    //
+    //  A group of configuration properties.
+    //  E.g. A set of network related application options could be a group. A set of UI related options could be
+    //  another group.
+    // 
     class GUSLIB_EXPORT_SYMBOL PropertyGroup
     {
     private:
+      // Opaque pointer.
       class Impl;
       Impl* impl_;
 
     public:
+      //
+      // Default constructor.
+      //
       PropertyGroup();
+
+      //
+      // Constructor with name.
+      //
       explicit PropertyGroup(const std::string &name);
 
-      /**
-        Copy constructor. Needed to copy the pimpl.
-      */
+      //
+      //  Copy constructor. Needed to copy the pimpl.
+      //
       PropertyGroup(const PropertyGroup& rhs);
+
+      //
+      // Destructor.
+      //
       ~PropertyGroup();
+
+      //
+      // Assignment operator overloading.
+      //
+      void operator=(const PropertyGroup &rhs);
 
       Property& operator[](const std::string& name);
 
@@ -84,7 +103,7 @@ namespace guslib
 
       void setSavable(bool rhs);
     };
-  }
+  }   // end namespace config
 }   // end namespace guslib
 
-#endif  // GUS_LIB_CONFIGURATION_PROPERTY_H
+#endif  // GUSLIB_UTIL_CONFIG_PROPERTYGROUP_H_

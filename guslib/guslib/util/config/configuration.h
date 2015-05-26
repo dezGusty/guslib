@@ -58,6 +58,9 @@
 // using the abstract factory
 #include "guslib/common/abstractfactory.hpp"
 
+// Use the external singleton. It's a singleton with an external instance.
+#include "guslib/common/externalsingleton.hpp"
+
 // using the singleton
 #include "guslib/common/singleton.hpp"
 
@@ -127,10 +130,9 @@ namespace guslib
       virtual void saveAs(const std::string& fileName);
     };
 
-    typedef guslib::Singleton <
+    typedef guslib::ExternalSingleton <
       guslib::AbstractFactory < config::Loader, std::string, config::Loader*(*)() >
     > LoaderFactory;
-
   }
 }   // end namespace guslib
 

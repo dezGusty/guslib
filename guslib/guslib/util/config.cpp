@@ -39,19 +39,19 @@
 // This library's headers
 //
 
-// Add the "ini" configuration to the factory.
-#include "guslib/util/config/iniconfig.h"
-
 // Add the configuration class.
 #include "guslib/util/config/configuration.h"
+
+// Add the "ini" configuration to the factory.
+#include "guslib/util/config/iniconfig.h"
 
 namespace guslib
 {
   bool Config::calledInit_ = false;
 
-  /**
-    Initialize the factory.
-  */
+  //
+  //  Initialize the factory.
+  //
   void Config::init()
   {
     if (calledInit_)
@@ -64,12 +64,17 @@ namespace guslib
     config::LoaderFactory::getPtr()->Register("ini", config::IniLoader::createLoader);
   }
 
+  //
+  //  Perform cleanup for the factory.
+  //
   void Config::terminate()
   {
-    if (!calledInit_)
+    if (false == calledInit_)
     {
       return;
     }
 
+    config::LoaderFactory::getPtr()->Unregister("ini");
+    config::LoaderFactory::destroy();
   }
 }

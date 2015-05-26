@@ -1,7 +1,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2015  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,7 @@
 //
 //   Application configuration utility.
 //
-//   Last change:  $LastChangedDate: 2014-09-11 20:14:06 +0200 (J, 11 sep. 2014) $
-//   Revision:    $Revision: 672 $
+
 
 //
 // Includes
@@ -56,10 +55,16 @@
 
 namespace guslib
 {
+  //
+  // Store the factory instance here.
+  //
+  GUSLIB_EXPIMP_TEMPLATE guslib::AbstractFactory < config::Loader, std::string, config::Loader*(*)() >* ExternalSingleton<guslib::AbstractFactory <
+    config::Loader, std::string, config::Loader*(*)() >
+  >::objectPtr_ = nullptr;
+
   namespace config
   {
     class IniLoader;
-
 
     //
     //  ------------------------------------ Configuration Internals ------------------------------------------------
@@ -71,41 +76,40 @@ namespace guslib
     class Configuration::Impl
     {
     public:
-      std::shared_ptr<Loader> loaderPtr_;
+      std::shared_ptr<Loader> loader_ptr_;
 
       std::map <std::string, PropertyGroup> groups_;
 
       // the default group to use for setting/retrieving properties.
       std::string defaultGroup_;
 
-      /**
-        Constructor.
-        */
+      //
+      // Constructor.
+      //
       Impl()
-        : loaderPtr_(nullptr)
+        : loader_ptr_(nullptr)
         , defaultGroup_("general")
         , groups_(std::map <std::string, PropertyGroup>())
       {
         GTRACE(7, "Config-Internal CTOR");
       }
 
+      //
+      // Copy constructor.
+      //
       Impl(const Impl& rhs)
-        : loaderPtr_(rhs.loaderPtr_)
+        : loader_ptr_(rhs.loader_ptr_)
         , defaultGroup_(rhs.defaultGroup_)
         , groups_(rhs.groups_)
       {
         GTRACE(7, "Config-Internal COPY CTOR");
-        /*if (nullptr != rhs.loaderPtr_)
-        {
-          loaderPtr_ = rhs.loaderPtr_->clone();
-        }*/
       }
 
       ~Impl()
       {
         GTRACE(7, "Config-Internal DTOR");
-        //this->loaderSharedPtr_ = nullptr;
-        //this->groups_.clear();
+        groups_.clear();
+        //delete loader_ptr_;
       }
     };
 
@@ -113,9 +117,9 @@ namespace guslib
     // -------------------- Configuration main class ----------------------------
     //
 
-    /**
-      Constructor.
-      */
+    //
+    //  Constructor.
+    //
     Configuration::Configuration()
       : impl_(new Configuration::Impl())
     {
@@ -123,18 +127,18 @@ namespace guslib
       GTRACE(3, "Created Configuration. Impl addr: " << impl_);
     }
 
-    /**
-      Copy Constructor.
-      */
+    //
+    //  Copy Constructor.
+    //
     Configuration::Configuration(const Configuration& rhs)
       : impl_(new Configuration::Impl(*rhs.impl_))
     {
       GTRACE(3, "copied Configuration. Impl addr: " << impl_);
     }
 
-    /**
-      Destructor.
-      */
+    //
+    //  Destructor.
+    //
     Configuration::~Configuration()
     {
       GTRACE(3, "Destroying Configuration. Impl addr: " << impl_);
@@ -208,14 +212,15 @@ namespace guslib
 
     bool Configuration::load(const std::string & fileName)
     {
-      bool result{ false };
+      bool result(false);
 
       GTRACE(3, "Configuration - loading from " << fileName);
       std::string fileExtension = stringutil::GetExtensionFromFileName(fileName);   // E.g. "ini";
 
       // Use the loader based on the extension.
-      impl_->loaderPtr_.reset(config::LoaderFactory::getPtr()->CreateObject(fileExtension));
-      if (!impl_->loaderPtr_)
+      impl_->loader_ptr_.reset(config::LoaderFactory::getPtr()->CreateObject(fileExtension));
+      //impl_->loader_ptr_ = config::LoaderFactory::getPtr()->CreateObject(fileExtension);
+      if (!impl_->loader_ptr_)
       {
         // No loader for this extension!
         std::string exception_message("Data cannot be loaded using this extension: \"");
@@ -224,7 +229,7 @@ namespace guslib
         throw guslib::SimpleException(exception_message.c_str());
       }
 
-      result = impl_->loaderPtr_->load(*this, fileName);
+      result = impl_->loader_ptr_->load(*this, fileName);
 
       GTRACE(5, "Configuration - DONE loading from " << fileName);
 
@@ -234,26 +239,26 @@ namespace guslib
 
     void Configuration::save()
     {
-      if (nullptr == impl_->loaderPtr_)
+      if (nullptr == impl_->loader_ptr_)
       {
         GTRACE(3, "Tried to save configuration, but no loader is available");
         return;
       }
 
       GTRACE(5, "Configuration - saving");
-      impl_->loaderPtr_->save(*this);
+      impl_->loader_ptr_->save(*this);
     }
 
     void Configuration::saveAs(const std::string& fileName)
     {
-      if (nullptr == impl_->loaderPtr_)
+      if (nullptr == impl_->loader_ptr_)
       {
         GTRACE(3, "Tried to save configuration, but no loader is available");
         return;
       }
 
       GTRACE(5, "Configuration - saving as...");
-      impl_->loaderPtr_->save(*this, fileName);
+      impl_->loader_ptr_->save(*this, fileName);
     }
 
   }

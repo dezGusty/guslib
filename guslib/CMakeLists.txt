@@ -131,6 +131,7 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/guslib/guslibbuildopts.h.in" "${CMAK
 # Just keep this for future references
 SET (SOURCE_FILES_COMMON
   ./guslib/common/abstractfactory.hpp
+  ./guslib/common/externalsingleton.hpp
   ./guslib/common/simpleexception.cpp
   ./guslib/common/simpleexception.h
   ./guslib/common/singleton.hpp

@@ -4,7 +4,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2015  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -66,25 +66,43 @@ namespace guslib
     //
     class Property;
 
-    /**
-      A configuration property
-      */
+    //
+    //  A configuration property
+    //
     class GUSLIB_EXPORT_SYMBOL Property
     {
     private:
       PropertyType propType_;
 
+      // Opaque pointer.
       class Impl;
       Impl* impl_;
+
     public:
+      //
+      //  Default constructor.
+      //
       Property();
+
+      //
+      //  Constructor with name.
+      //
       explicit Property(const std::string &name);
 
-      /**
-        Copy constructor. Needed to copy the pimpl.
-      */
+      //
+      //  Copy constructor. Needed to copy the pimpl.
+      //
       Property(const Property& rhs);
+
+      //
+      //  Destructor.
+      //
       virtual ~Property();
+
+      //
+      // Assignment operator overloading.
+      //
+      void operator=(const Property &rhs);
 
       const std::string& getName() const;
 

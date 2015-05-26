@@ -1,7 +1,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2015  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -42,6 +42,10 @@
 #include <string>
 #include <vector>
 
+//
+// This library's headers
+//
+
 #include "guslib/trace/trace.h"
 #include "guslib/util/config/property.h"
 
@@ -49,35 +53,44 @@ namespace guslib
 {
   namespace config
   {
+    //
+    // Opaque pointer implementation for property group.
+    //
     class PropertyGroup::Impl
     {
     public:
       std::string name_;
 
-      std::vector <Property> propGroup_;
+      std::vector <Property> contained_properties_;
 
       bool savable_;
 
       Impl(const std::string& name, bool savable)
         : name_(name)
         , savable_(savable)
+        , contained_properties_(0)
       {
-
+        GTRACE(8, "[impl] Property group CTOR: " << name_);
       }
 
-      Impl(const PropertyGroup::Impl& rhs)
+      explicit Impl(const PropertyGroup::Impl& rhs)
         : name_(rhs.name_)
         , savable_(rhs.savable_)
+        , contained_properties_(rhs.contained_properties_)
       {
-        propGroup_ = rhs.propGroup_;
+        GTRACE(8, "[impl] Property group impl COPY CTOR: " << name_);
       }
 
       ~Impl()
       {
-        propGroup_.clear();
+        GTRACE(8, "[impl] Property group impl DTOR: " << name_);
+        contained_properties_.clear();
       }
     };
 
+    //
+    // Constructor with name.
+    //
     PropertyGroup::PropertyGroup(const std::string& name)
       : impl_(new PropertyGroup::Impl(name, true))
     {
@@ -93,6 +106,7 @@ namespace guslib
     PropertyGroup::PropertyGroup(const PropertyGroup& rhs)
       : impl_(new PropertyGroup::Impl(*rhs.impl_))
     {
+      GTRACE(7, "Property Group COPY CTor [" << getName() << "]");
     }
 
     PropertyGroup::~PropertyGroup()
@@ -108,7 +122,7 @@ namespace guslib
 
     const std::vector <Property>& PropertyGroup::getProperties() const
     {
-      return impl_->propGroup_;
+      return impl_->contained_properties_;
     }
 
     const bool PropertyGroup::isSavable() const
@@ -123,13 +137,18 @@ namespace guslib
 
     void PropertyGroup::addProperty(const Property & prop)
     {
-      impl_->propGroup_.push_back(prop);
+      impl_->contained_properties_.push_back(prop);
+    }
+
+    void PropertyGroup::operator=(const PropertyGroup &rhs)
+    {
+      this->impl_ = new PropertyGroup::Impl(*rhs.impl_);
     }
 
 
     Property& PropertyGroup::operator[](const std::string& name)
     {
-      for (Property& item : impl_->propGroup_)
+      for (Property& item : impl_->contained_properties_)
       {
         if (item.getName() == name)
         {
@@ -140,8 +159,8 @@ namespace guslib
       // if this region is reached, no such property was found... what to do?
       // create an empty one.
 
-      impl_->propGroup_.push_back(Property(name));
-      return impl_->propGroup_.back();
+      impl_->contained_properties_.push_back(Property(name));
+      return impl_->contained_properties_.back();
     }
   }
 }   // end namespace guslib

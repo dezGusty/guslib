@@ -1,7 +1,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2015  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +45,6 @@
 //
 // This libraries' headers
 //
-//#include "guslib/common/simpleexception.h"
 #include "guslib/trace/trace.h"
 #include "guslib/util/stringutil.h"
 
@@ -53,23 +52,56 @@ namespace guslib
 {
   namespace config
   {
+    //
+    // ----------------------------- Property internals ---------------------------------
+    //
+
+    //
+    // Opaque pointer implementation for property.
+    //
     class Property::Impl
     {
     public:
+      // default content returned for uninitialized data.
       static std::string empty_;
 
       std::vector <std::string> content_;
       std::string name_;
 
-      Property::Impl(const std::string& name)
+      //
+      // Constructor.
+      //
+      explicit Impl(const std::string& name)
         : name_(name)
       {
+        GTRACE(8, "[impl] Property CTOR: " << name_);
+      }
 
+      //
+      // Copy constructor.
+      //
+      explicit Impl(const Property::Impl& rhs)
+        : name_(rhs.name_)
+        , content_(rhs.content_)
+      {
+        GTRACE(8, "[impl] Property COPY CTOR: " << name_);
+      }
+
+      //
+      // Destructor.
+      //
+      ~Impl()
+      {
+        GTRACE(8, "[impl] Property DTOR: " << name_);
+        content_.clear();
       }
     };
 
     std::string Property::Impl::empty_ = "";
 
+    //
+    // ----------------------------- Property implementation ---------------------------------
+    //
 
     Property::Property(const std::string& name)
       : impl_(new Property::Impl(name))
@@ -87,6 +119,7 @@ namespace guslib
 
     Property::Property(const Property& rhs)
     {
+      GTRACE(7, "Property COPY CTor [" << rhs.getName() << "]");
       this->impl_ = new Property::Impl(*rhs.impl_);
       this->propType_ = rhs.propType_;
     }
@@ -95,6 +128,16 @@ namespace guslib
     {
       GTRACE(7, "Property DTor [" << getName() << "]");
       delete impl_;
+    }
+
+    //
+    // Assignment operator overloading.
+    //
+    void Property::operator=(const Property &rhs)
+    {
+      GTRACE(7, "Property Assignment CTor [" << rhs.getName() << "]");
+      this->impl_ = new Property::Impl(*rhs.impl_);
+      this->propType_ = rhs.propType_;
     }
 
     const std::string& Property::getName() const

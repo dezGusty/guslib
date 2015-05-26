@@ -1,10 +1,10 @@
-#ifndef GUS_LIB_CONFIG_H
-#define GUS_LIB_CONFIG_H
+#ifndef GUSLIB_UTIL_CONFIG_H_
+#define GUSLIB_UTIL_CONFIG_H_
 
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2015  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -31,10 +31,10 @@
 
 namespace guslib
 {
-  /**
-    Static configuration factory.
-    This ensures that the initialization of the factory is called only once.
-  */
+  //
+  //  Static configuration factory.
+  //  This ensures that the initialization of the factory is called only once.
+  //
   class Config
   {
   private:
@@ -42,16 +42,16 @@ namespace guslib
     static bool calledInit_;
 
   public:
-    /**
-      Initialize the factory.
-    */
+    //
+    //  Initialize the factory.
+    //
     static void init();
 
-    /**
-      Perform cleanup for the factory.
-    */
+    //
+    //  Perform cleanup for the factory.
+    //
     static void terminate();
   };
 }
 
-#endif
+#endif  //  GUSLIB_UTIL_CONFIG_H_
