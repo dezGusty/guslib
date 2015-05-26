@@ -140,13 +140,26 @@ namespace guslib
       impl_->contained_properties_.push_back(prop);
     }
 
+    //
+    // Assignment operator overloading.
+    //
     void PropertyGroup::operator=(const PropertyGroup &rhs)
     {
       this->impl_ = new PropertyGroup::Impl(*rhs.impl_);
     }
 
-
+    //
+    // Property getter via operator.
+    //
     Property& PropertyGroup::operator[](const std::string& name)
+    {
+      return this->getPropertyByName(name);
+    }
+
+    //
+    // Property getter.
+    //
+    Property& PropertyGroup::getPropertyByName(const std::string& name)
     {
       for (Property& item : impl_->contained_properties_)
       {
@@ -162,6 +175,7 @@ namespace guslib
       impl_->contained_properties_.push_back(Property(name));
       return impl_->contained_properties_.back();
     }
+
   }
 }   // end namespace guslib
 

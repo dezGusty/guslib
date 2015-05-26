@@ -91,7 +91,15 @@ namespace guslib
       //
       void operator=(const PropertyGroup &rhs);
 
+      //
+      // Property getter via operator.
+      //
       Property& operator[](const std::string& name);
+
+      //
+      // Property getter.
+      //
+      Property& getPropertyByName(const std::string& name);
 
       void addProperty(const Property & prop);
 
