@@ -47,7 +47,6 @@
 // This libraries' headers
 //
 #include "guslib/common/simpleexception.h"
-
 #include "guslib/trace/trace.h"
 #include "guslib/util/config/loader.h"
 #include "guslib/util/config.h"
@@ -66,14 +65,13 @@ namespace guslib
     //  ------------------------------------ Configuration Internals ------------------------------------------------
     //
 
-    /**
-      Opaque pointer: private implementation of scene.
-      */
+    //
+    //  Opaque pointer: private implementation of the configuration class.
+    //
     class Configuration::Impl
     {
     public:
       std::shared_ptr<Loader> loaderPtr_;
-      //SharedPtr_;
 
       std::map <std::string, PropertyGroup> groups_;
 
@@ -88,16 +86,15 @@ namespace guslib
         , defaultGroup_("general")
         , groups_(std::map <std::string, PropertyGroup>())
       {
-        GTRACE(3, "Config-Internal CTOR");
+        GTRACE(7, "Config-Internal CTOR");
       }
 
       Impl(const Impl& rhs)
         : loaderPtr_(rhs.loaderPtr_)
-          //loaderPtr_(nullptr)
         , defaultGroup_(rhs.defaultGroup_)
         , groups_(rhs.groups_)
       {
-        GTRACE(3, "Config-Internal COPY CTOR");
+        GTRACE(7, "Config-Internal COPY CTOR");
         /*if (nullptr != rhs.loaderPtr_)
         {
           loaderPtr_ = rhs.loaderPtr_->clone();
@@ -106,11 +103,10 @@ namespace guslib
 
       ~Impl()
       {
-        GTRACE(3, "Config-Internal DTOR");
+        GTRACE(7, "Config-Internal DTOR");
         //this->loaderSharedPtr_ = nullptr;
         //this->groups_.clear();
       }
-
     };
 
     //
@@ -218,10 +214,16 @@ namespace guslib
       std::string fileExtension = stringutil::GetExtensionFromFileName(fileName);   // E.g. "ini";
 
       // Use the loader based on the extension.
-
-      //impl_->loaderSharedPtr_ = std::shared_ptr < guslib::config::Loader > { config::LoaderFactory::getPtr()->CreateObject(fileExtension)};
       impl_->loaderPtr_.reset(config::LoaderFactory::getPtr()->CreateObject(fileExtension));
-      //impl_->loaderPtr_ = config::LoaderFactory::getPtr()->CreateObject(fileExtension);
+      if (!impl_->loaderPtr_)
+      {
+        // No loader for this extension!
+        std::string exception_message("Data cannot be loaded using this extension: \"");
+        exception_message.append(fileExtension);
+        exception_message.append("\". No factory detected");
+        throw guslib::SimpleException(exception_message.c_str());
+      }
+
       result = impl_->loaderPtr_->load(*this, fileName);
 
       GTRACE(5, "Configuration - DONE loading from " << fileName);
