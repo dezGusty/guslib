@@ -1,10 +1,10 @@
-#ifndef GUS_LIB_BUILDOPTS_H
-#define GUS_LIB_BUILDOPTS_H
+#ifndef GUSLIB_GUSLIBBUILDOPTS_H
+#define GUSLIB_GUSLIBBUILDOPTS_H
 
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2013  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2015  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -26,26 +26,33 @@
 //
 //   Build options.
 //
-//   Last change:  $LastChangedDate: 2013-06-20 22:36:33 +0200 (J, 20 iun. 2013) $
-//   Revision:    $Revision: 573 $
+//   IMPORTANT: This file is auto-generated from guslibbuildopts.h.in
+//
 
-// Version info
-#include "guslib/guslib_version.hpp"
+
+//
+// Includes
+//
+
+//
+// This project's headers
+//
+
 // Add platform specific definitions.
 #include "guslib/guslib_platform.h"
+// Version info
+#include "guslib/guslib_version.hpp"
 
+//
+// Macro definitions for import / export.
+//
 #ifdef GUSLIB_EXP
-#define GUSLIB_EXPORT_SYMBOL __declspec (dllexport)
-#define GUSLIB_EXPIMP_TEMPLATE
+# define GUSLIB_EXPORT_SYMBOL __declspec (dllexport)
+# define GUSLIB_EXPIMP_TEMPLATE
 #else
-#ifdef GUSLIB_IMP
-#define GUSLIB_EXPORT_SYMBOL __declspec (dllimport)
-#define GUSLIB_EXPIMP_TEMPLATE extern
-#else
-#define GUSLIB_EXPORT_SYMBOL 
-#define GUSLIB_EXPIMP_TEMPLATE 
-#endif
-#endif // GUSLIB_EXP
+# define GUSLIB_EXPORT_SYMBOL __declspec (dllimport)
+# define GUSLIB_EXPIMP_TEMPLATE extern
+#endif  //  GUSLIB_EXP
 
 
 /**
@@ -84,4 +91,4 @@
 #endif
 
 
-#endif // GUS_LIB_BUILDOPTS_H
+#endif  // GUSLIB_GUSLIBBUILDOPTS_H
