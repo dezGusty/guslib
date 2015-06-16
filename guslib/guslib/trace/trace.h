@@ -100,21 +100,27 @@ namespace guslib
   ///
   /// Usage example, through the use of macros
   /// @code
-  /// std::string myFileName = "c:/temp/test.txt";
-  /// int traceLevel = 4; // Level of tracing
-  /// GSTARTTRACING(myFileName, traceLevel);
+  /// // Defines the output file to use
+  /// std::string my_file_name("tracing_sample_1.log");
+  /// // Defines the trace level to use. All commands with a trace level higher than this shall be ignored.
+  /// int trace_level = 4; // Level of tracing
+  ///
+  /// // Starts writing to the file.
+  /// GSTARTTRACING(my_file_name.c_str(), trace_level);
+  ///
+  ///  // Adding some entries.
   /// GTRACE(1, "The trace started successfully");
   /// GTRACE(5, "This message is not written, because it's sent with level 5, but the trace level is 4");
-  /// GDISABLETRACE; // the trace was disabled.
-  /// GTRACE(1, "this will also not be written, because the tracing is disabled);
+  /// GDISABLETRACE(); // the trace was disabled.
+  /// GTRACE(1, "This will also not be written, because the tracing is disabled");
   /// GENABLETRACE(); // trace was re-enabled.
   /// GTRACE(4, "This message is written.");
   /// GSETTRACELEVEL(3); // the trace level was changed.
-  /// GTRACE(4, "This message is not written, because it's sent with level 4, but the trace level is 3");");
-  /// GTRACE(3, "It is possible to "<<"group"<<" more texts using the << operator.");
+  /// GTRACE(4, "This message is not written, because it's sent with level 4, but the trace level is 3");
+  /// GTRACE(3, "This works with streams, so it is possible to " << "group" << " more texts using the << operator.");
   /// GTRACE(-1, "It's possible to use negative levels also for even higher priority.");
-  /// GSTOPTRACING(); // The trace object static instance is destroyed; file handle closed.
-  /// // The trace object is cleanly removed when the program exits, so this is optional.
+  ///
+  /// GSTOPTRACING(); // Destroys the trace object static instance; file handle closed.
   /// @endcode
   class GUSLIB_EXPORT_SYMBOL TraceUtil
   {

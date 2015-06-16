@@ -24,6 +24,10 @@
 # 
 # Utility macro used to create a new variable (that can have the value 0 or 1). The initial variable
 # is expected to be a user specified option (with the values ON/OFF).
+# E.g. 
+#   OPTION(MY_FLAG "Sample option" ON)
+#   ...
+#   "CREATE_BINARY_VAR_FROM_OPTION (MY_FLAG)" will create a variable named MY_FLAG_NUM with a value of 1
 # 
 MACRO (CREATE_BINARY_VAR_FROM_OPTION _option_name)
   IF ("${_option_name}" STREQUAL "ON")

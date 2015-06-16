@@ -51,8 +51,6 @@ REMOVE_DEFINITIONS(-DGUSLIB_IMP)
 # 
 # OPTION(GUSLIB_FLAG_MULTITHREAD_SUPPORT "Use a limited support for multithreading (mainly by adding some mutexes to the singleton class)" ON)
 OPTION(GUSLIB_FLAG_SINGLETONINSTANCE "When using the singleton, if this option is NOT enabled, you need to instantiate the singleton yourself " ON)
-OPTION(GUSLIB_FLAG_USE_BOOST_SMART_POINTERS "Link to the boost smart (shared) pointers" OFF)
-OPTION(GUSLIB_FLAG_USE_YASPER_SMART_POINTER "Link to the yasper smart (shared) pointers" ON)
 OPTION(GUSLIB_FLAG_USE_BOOST_RANDOM "Use the boost random number generator instead of the basic implementation" OFF)
 OPTION(GUSLIB_THREAD_SUPPORT "Specify whether to use threading support or not." ON)
 OPTION(GUSLIB_USE_OGRE_TIMERS "Specify whether to use OGRE timers instead of custom timers." OFF)
@@ -62,7 +60,6 @@ OPTION(GUSLIB_USE_OGRE_TIMERS "Specify whether to use OGRE timers instead of cus
 #
 
 # Check to see whether we use boost threads or not. Will be used for linking.
-SET (GUSLIB_FLAG_USE_BOOST_THREADS OFF)
 SET (GUSLIB_THREAD_PROVIDER_RECOGNIZED 0)
 SET (GUSLIB_THREAD_PROVIDER_NUM 0)
 SET(GUSLIB_THREAD_DEFAULT_PROVIDER "tthread")
@@ -70,8 +67,7 @@ SET(GUSLIB_THREAD_PROVIDER ${GUSLIB_THREAD_DEFAULT_PROVIDER} CACHE STRING
 	"Select the library to use for thread support. Possible values:
   off     - no threading support
 	C11     - C++ 11 threads
-	tthread - TinyThread++ library
-	boost   - Boost thread library."
+	tthread - TinyThread++ library."
 )
 
 # Verify C++11 scenario
@@ -84,13 +80,6 @@ ENDIF ()
 IF ("${GUSLIB_THREAD_PROVIDER}" STREQUAL "tthread")
   SET (GUSLIB_THREAD_PROVIDER_RECOGNIZED 1)
   SET (GUSLIB_THREAD_PROVIDER_NUM 2)
-ENDIF ()
-
-# Verify boost scenario
-IF ("${GUSLIB_THREAD_PROVIDER}" STREQUAL "boost")
-  SET (GUSLIB_THREAD_PROVIDER_RECOGNIZED 1)
-  SET (GUSLIB_THREAD_PROVIDER_NUM 3)
-  SET (GUSLIB_FLAG_USE_BOOST_THREADS ON)
 ENDIF ()
 
 # Perform sanity check.
@@ -114,7 +103,6 @@ GUSLIB_ADD_BOOST_DEPS(list_of_boost_libs_to_link GUSLIB_FLAG_USE_BOOST_THREADS G
 CREATE_BINARY_VAR_FROM_OPTION (GUSLIB_FLAG_USE_BOOST_THREADS)
 CREATE_BINARY_VAR_FROM_OPTION (GUSLIB_FLAG_SINGLETONINSTANCE)
 CREATE_BINARY_VAR_FROM_OPTION (GUSLIB_FLAG_USE_BOOST_SMART_POINTERS)
-CREATE_BINARY_VAR_FROM_OPTION (GUSLIB_FLAG_USE_YASPER_SMART_POINTER)
 CREATE_BINARY_VAR_FROM_OPTION (GUSLIB_FLAG_USE_BOOST_RANDOM)
 CREATE_BINARY_VAR_FROM_OPTION (GUSLIB_THREAD_SUPPORT)
 CREATE_BINARY_VAR_FROM_OPTION (GUSLIB_USE_OGRE_TIMERS)
