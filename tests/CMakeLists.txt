@@ -23,12 +23,13 @@
 # THE SOFTWARE.
 #-------------------------------------------------------------------
 
+
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
-SET (guslibtest_project_name logging_tracing_sample)
+SET (guslibtest_project_name tests_via_dll_import)
 PROJECT (${guslibtest_project_name})
 
-SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../../cmake/;${CMAKE_MODULE_PATH}")
+SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../cmake/;${CMAKE_MODULE_PATH}")
 SET(guslibtest_project_type SHARED)
 
 MESSAGE(STATUS "Building ${guslibtest_project_name}")
@@ -44,12 +45,13 @@ ADD_DEFINITIONS(-DUNICODE -D_UNICODE )
 #
 
 SET(SRCS
-  ./src/trace_simple_main.cpp
+  ./src/test_tracing_logging.cpp
 )
 
 # More include directories.
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src)
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/../../guslib)
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/../guslib)
+
 
 ADD_EXECUTABLE(${guslibtest_project_name} 
     ${SRCS})
@@ -65,12 +67,12 @@ TARGET_LINK_LIBRARIES(${guslibtest_project_name}
 #
 IF (WIN32)
     IF (CMAKE_BUILD_TYPE STREQUAL "Release")
-      SET (guslibtest_project_out_dir "../../bin/Release")
+      SET (guslibtest_project_out_dir "../bin/Release")
     ELSE ()
       IF (CMAKE_BUILD_TYPE STREQUAL "Debug")
-        SET (guslibtest_project_out_dir "../../bin/Debug")
+        SET (guslibtest_project_out_dir "../bin/Debug")
       ELSE ()
-        SET (guslibtest_project_out_dir "../../bin")
+        SET (guslibtest_project_out_dir "../bin")
       ENDIF ()
     ENDIF ()
 ELSE()

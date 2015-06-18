@@ -15,6 +15,11 @@ guslib is a small C++ utility library. It includes other small libraries to prov
 ------------
 Augustin Preda
 
+## Status
+---------
+- Travis Build (Continuous Integration)
+  - ![](https://travis-ci.org/dezGusty/guslib.svg?branch=master) (master branch)
+
 ## 3rd party libraries
 ----------------------
 - Dirent API for Microsoft Visual Studio (http://softagalleria.net/dirent.php)

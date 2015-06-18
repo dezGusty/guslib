@@ -31,6 +31,7 @@ cmake_minimum_required(VERSION 3.0)
 # 
 OPTION(GUSLIB_BUILD_CORE "Build the core lib" ON)
 OPTION(GUSLIB_BUILD_SAMPLES "Build the sample projects" ON)
+OPTION(GUSLIB_BUILD_TESTS "Build the tests (requires the google test framework)" ON)
 
 
 PROJECT(guslib)
@@ -40,7 +41,10 @@ IF (GUSLIB_BUILD_CORE)
 ENDIF ()
 
 
-
 IF (GUSLIB_BUILD_SAMPLES)
 	ADD_SUBDIRECTORY(samples)
+ENDIF ()
+
+IF (GUSLIB_BUILD_TESTS)
+	ADD_SUBDIRECTORY(tests)
 ENDIF ()

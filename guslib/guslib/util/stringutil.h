@@ -50,7 +50,7 @@
 
 namespace guslib
 {
-  GUSLIB_EXPORT_SYMBOL enum class LetterCase
+  enum class LetterCase
   {
     SentenceCase,  // Sentencecase
     LowerCase,    // lowercase

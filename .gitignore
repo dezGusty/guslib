@@ -31,3 +31,4 @@
 build/
 build64/
 guslib/guslib/guslibbuildopts.h
+bin/
