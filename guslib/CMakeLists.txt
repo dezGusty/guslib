@@ -188,6 +188,8 @@ SET (SOURCE_FILES_UTIL
   ./guslib/util/plugin.h
   ./guslib/util/pluginmanager.cpp
   ./guslib/util/pluginmanager.h
+  ./guslib/util/porttester.cpp
+  ./guslib/util/porttester.h
   ./guslib/util/stringutil.cpp
   ./guslib/util/stringutil.h
 )
