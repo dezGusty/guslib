@@ -48,19 +48,42 @@ If "!COVDIR!"=="" (
 Rem
 Rem Call the Visual Studio environment variable batch.
 Rem
-Echo.Current directory is !CD!
-Echo.Calling VSExpress variable setting batch file...
-If Not Exist "%VS120COMNTOOLS%..\..\VC\vcvarsall.bat" (
+Set found_batch=0
+Set batch_to_run="%VS140COMNTOOLS%..\..\VC\vcvarsall.bat"
+
+REM Set found_batch=1
+REM Echo.Current directory is !CD!
+REM Echo.Calling VSExpress variable setting batch file...
+REM If Not Exist !batch_to_run! (
+REM   Echo.Could not find VS 2015 env batch file
+REM   Set found_batch=0
+REM )
+
+If found_batch==0 (
+  Rem Try again
+  Set batch_to_run="%VS120COMNTOOLS%..\..\VC\vcvarsall.bat"
+  Set found_batch=1
+  If Not Exist !batch_to_run! (
+    Echo.Could not find VS 2013 env batch file
+    Set found_batch=0
+  )
+)
+
+If found_batch==0 (
   Echo.Well, I really thought that you would use Visual Studio 2013.
   Echo.Other versions of Visual Studio probably work as well, but you will 
   Echo.have to manually call the [vcvarsall.bat] script before launching this one.
   GoTo :eof
+
 )
 
-CALL "%VS120COMNTOOLS%..\..\VC\vcvarsall.bat" x86
+CALL !batch_to_run! x86
 
-Echo.Preparing build switches... 
-SET MSBUILD_SWITCHES=/nologo /consoleloggerparameters:Verbosity=minimal /maxcpucount /nodeReuse:true /target:Rebuild /property:Configuration="Release";Platform=Win32
+Echo.Preparing build switches...
+REM Set PlatformType=x64
+Rem Alternatively:
+Set PlatformType=Win32
+SET MSBUILD_SWITCHES=/nologo /consoleloggerparameters:Verbosity=minimal /maxcpucount /nodeReuse:true /target:Rebuild /property:Configuration="Release";Platform=!PlatformType!
 
 Rem
 Rem Go to the build folder, where the project output shall be placed.
@@ -68,6 +91,7 @@ Rem
 Echo.Navigating to build folder...
 If Not Exist !directory_to_use! (
   Echo.Unfortunately, this batch file expects you to use [build] subdirectory as the build directory for CMake.
+  Echo.If your project is under D:/temp/proj1, set the CMake build directory for it under D:/temp/proj1/build
   Echo.Could not find a directory "!directory_to_use!". Exiting.
   GoTo :eof
 )
