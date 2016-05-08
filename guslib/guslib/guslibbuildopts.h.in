@@ -46,14 +46,26 @@
 //
 // Macro definitions for import / export.
 //
-#ifdef GUSLIB_EXP
-# define GUSLIB_EXPORT_SYMBOL __declspec (dllexport)
-# define GUSLIB_EXPIMP_TEMPLATE
+#if defined(_MSC_VER)
+# ifdef GUSLIB_EXP
+#  define GUSLIB_EXPORT_SYMBOL __declspec (dllexport)
+#  define GUSLIB_EXPIMP_TEMPLATE
+# else
+#  define GUSLIB_EXPORT_SYMBOL __declspec (dllimport)
+#  define GUSLIB_EXPIMP_TEMPLATE extern
+# endif  //  GUSLIB_EXP
+#elif defined(_GCC)
+# ifdef GUSLIB_EXP
+#  define GUSLIB_EXPORT_SYMBOL __attribute__((visibility("default")))
+#  define GUSLIB_EXPIMP_TEMPLATE
+# else
+#  define GUSLIB_EXPORT_SYMBOL 
+#  define GUSLIB_EXPIMP_TEMPLATE extern
+# endif  //  GUSLIB_EXP
 #else
-# define GUSLIB_EXPORT_SYMBOL __declspec (dllimport)
-# define GUSLIB_EXPIMP_TEMPLATE extern
-#endif  //  GUSLIB_EXP
-
+#  define GUSLIB_EXPORT_SYMBOL 
+#  define GUSLIB_EXPIMP_TEMPLATE 
+#endif
 
 /**
   Define the multithread support.
