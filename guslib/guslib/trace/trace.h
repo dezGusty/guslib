@@ -65,7 +65,7 @@
 #endif
 
 #if GUS_USE_TIMER_IN_TRACE
-#include "guslib/system/Timer.h"
+#include "guslib/system/timer.h"
 #endif
 
 // Note: you may want to define the additional MACROS:

@@ -23,10 +23,13 @@
 # THE SOFTWARE.
 #-------------------------------------------------------------------
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.2)
 
 SET (guslibtest_project_name logging_tracing_sample)
 PROJECT (${guslibtest_project_name})
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../../cmake/;${CMAKE_MODULE_PATH}")
 SET(guslibtest_project_type SHARED)
@@ -80,5 +83,7 @@ ENDIF()
 SET_TARGET_PROPERTIES (${guslibtest_project_name} 
     PROPERTIES 
         RUNTIME_OUTPUT_DIRECTORY ${guslibtest_project_out_dir}
+        CXX_STANDARD 11
+    	CXX_STANDARD_REQUIRED YES
 )
 

@@ -23,10 +23,13 @@
 # THE SOFTWARE.
 #-------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.2)
 SET (GUSLIB_PROJECT_NAME guslib)
 PROJECT (${GUSLIB_PROJECT_NAME})
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    
 SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../cmake/;${CMAKE_MODULE_PATH}")
 SET(GUSLIB_LIB_TYPE SHARED)
 
@@ -44,7 +47,6 @@ ADD_DEFINITIONS(-DUNICODE -D_UNICODE -DGUSLIB_EXP -D_USRDLL)
 REMOVE_DEFINITIONS(-DGUSLIB_IMP)
 
 # ADD_DEFINITIONS(-D_MT)
- 
 
 # 
 # Specify some user configurable options
@@ -281,6 +283,8 @@ add_library(${GUSLIB_PROJECT_NAME}
     ${GUSLIB_LIB_TYPE}
     ${SOURCE_FILES})
 
+set (CMAKE_CXX_STANDARD 11)
+
 # TODO: define link options (static/non-static) and dll-export symbols (GUSLIB_EXP)/GUSLIB_IMP definitions.
 # set_target_properties(${GUSLIB_PROJECT_NAME}
 #     PROPERTIES
@@ -288,7 +292,8 @@ add_library(${GUSLIB_PROJECT_NAME}
 #     COMPILE_DEFINITIONS GUSLIB_LIB_BUILD
 # )
 
-  
+
+
 #
 # Link to dependencies
 #
@@ -356,7 +361,8 @@ SET_TARGET_PROPERTIES (${GUSLIB_PROJECT_NAME}
     PROPERTIES 
         RUNTIME_OUTPUT_DIRECTORY ${GUSLIB_DLL_OUTPUT_DIR}
         ARCHIVE_OUTPUT_DIRECTORY ${GUSLIB_LIB_OUTPUT_DIR}
-
+		CXX_STANDARD 11
+    	CXX_STANDARD_REQUIRED YES
 )
 
 # install the build binary

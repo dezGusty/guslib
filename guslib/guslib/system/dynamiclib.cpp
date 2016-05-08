@@ -56,7 +56,7 @@ namespace guslib
   public:
     std::string name_;
 
-    DynamicLib::Impl(const std::string& name)
+    Impl(const std::string& name)
       : name_(name)
     {
     }
