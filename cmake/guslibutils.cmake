@@ -30,7 +30,7 @@
 #   "CREATE_BINARY_VAR_FROM_OPTION (MY_FLAG)" will create a variable named MY_FLAG_NUM with a value of 1
 # 
 MACRO (CREATE_BINARY_VAR_FROM_OPTION _option_name)
-  IF ("${_option_name}" STREQUAL "ON")
+  IF ("${${_option_name}}" STREQUAL "ON")
     SET (${_option_name}_NUM 1)
   ELSE ()
     SET (${_option_name}_NUM 0)

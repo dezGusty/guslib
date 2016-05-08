@@ -68,8 +68,8 @@ SET(GUSLIB_THREAD_DEFAULT_PROVIDER "tthread")
 SET(GUSLIB_THREAD_PROVIDER ${GUSLIB_THREAD_DEFAULT_PROVIDER} CACHE STRING
 	"Select the library to use for thread support. Possible values:
   off     - no threading support
-	C11     - C++ 11 threads
-	tthread - TinyThread++ library."
+  C11     - C++ 11 threads
+  tthread - TinyThread++ library."
 )
 
 # Verify C++11 scenario
@@ -198,6 +198,7 @@ SET (SOURCE_FILES_UTIL
 
 SET (SOURCE_FILES_BASE_FOLDER
   ./guslib/guslib_version.hpp
+  ./guslib/guslibbuildopts.h.in
   ./guslib/guslibbuildopts.h
   ./guslib/guslib_platform.h
 )
