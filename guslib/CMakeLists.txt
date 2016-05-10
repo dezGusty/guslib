@@ -153,6 +153,8 @@ SET (SOURCE_FILES_SYSTEM
 
 SET (SOURCE_FILES_THIRDPARTY
   ./guslib/thirdparty/SimpleIni.h
+  ./guslib/thirdparty/ConvertUTF.c
+  ./guslib/thirdparty/ConvertUTF.h
   ./guslib/thirdparty/tinystr.cpp
   ./guslib/thirdparty/tinystr.h
   ./guslib/thirdparty/tinyxml.cpp
