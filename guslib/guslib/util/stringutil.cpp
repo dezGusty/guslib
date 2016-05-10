@@ -219,6 +219,11 @@ namespace guslib
       return ss.str();
     }
 
+    {
+      std::stringstream ss;
+      ss << std::hex << number << std::dec;
+      return ss.str();
+    }
 
     std::string GetExtensionFromFileName(const std::string &fileName)
     {

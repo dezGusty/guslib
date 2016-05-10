@@ -4,7 +4,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,6 @@
 //
 //   String utility
 //
-//   Last change:  $LastChangedDate: 2014-09-04 08:43:29 +0300 (J, 04 sep. 2014) $
-//   Revision:    $Revision: 670 $
 
 //
 // Includes
@@ -60,14 +58,13 @@ namespace guslib
     NumLetterCases
   };
 
-
   namespace stringutil
   {
     /**
       Split a string into several other strings. A single char separator needs to be provided.
-      @param source The source string. 
+      @param source The source string.
       @param delimiter
-      @return A vector containing the separated strings. 
+      @return A vector containing the separated strings.
       If the source is an empty string, the result shall be an empty vector.
       If the source contains no separator item, the result is a vector with a single item.
       If the source contains only a separator item, the result is a vector with 2 empty entries.
@@ -89,6 +86,11 @@ namespace guslib
     GUSLIB_EXPORT_SYMBOL int StringToInt(const std::string & s);
     GUSLIB_EXPORT_SYMBOL std::string IntToString(int value);
 
+    /**
+      Transforms an integer to a hex representation, as a string.
+    */
+    GUSLIB_EXPORT_SYMBOL std::string IntToHexString(int number);
+
     GUSLIB_EXPORT_SYMBOL long long StringToLongLong(const std::string & s);
     GUSLIB_EXPORT_SYMBOL std::string LongLongToString(long long value);
 
@@ -101,10 +103,10 @@ namespace guslib
     GUSLIB_EXPORT_SYMBOL std::string GetExtensionFromFileName(const std::string &fileName);
 
     GUSLIB_EXPORT_SYMBOL std::string RemoveOuterQuotes(
-        const std::string& source_content,
-        bool only_remove_if_both_present = true);
+      const std::string& source_content,
+      bool only_remove_if_both_present = true);
 
-    GUSLIB_EXPORT_SYMBOL std::string TrimString (const std::string& content);
+    GUSLIB_EXPORT_SYMBOL std::string TrimString(const std::string& content);
   }
 }
 

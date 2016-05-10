@@ -43,6 +43,8 @@
 #include <guslib/system/systemwindowsfwd.h>
 #include <mmsystem.h>  //  (Requires winmm.lib added to the link options.)
 #pragma comment(lib, "winmm.lib")
+#elif GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX
+#include <sys/time.h>
 #else
 #include <time.h>
 #endif  // GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
@@ -167,7 +169,6 @@ namespace guslib
   {
     TimeUnits returnValue(0);
 
-#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
     SYSTEMTIME localTime;
     GetLocalTime(&localTime);
 
@@ -175,7 +176,34 @@ namespace guslib
     returnValue = returnValue * 60 + localTime.wMinute;
     returnValue = returnValue * 60 + localTime.wSecond;
     returnValue = returnValue * 1000 + localTime.wMilliseconds;
-#else
+
+    return returnValue;
+  }
+
+#elif GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX
+
+  LinuxTimer::LinuxTimer()
+  {
+
+  }
+
+  LinuxTimer::~LinuxTimer()
+  {
+
+  }
+
+  TimeUnits LinuxTimer::getCurrentTimeUnits()
+  {
+    struct timeval curr_time;
+
+    gettimeofday(&curr_time, NULL);
+    return curr_time.tv_sec * 1000 + curr_time.tv_usec;
+  }
+
+  TimeUnits WinTimer::getTimeSinceMidnight() const
+  {
+    TimeUnits returnValue(0);
+
     struct tm *newtime;
 
     time_t long_time;
@@ -188,10 +216,9 @@ namespace guslib
     returnValue = returnValue * 60 + newtime->tm_sec;
     returnValue = returnValue * 1000 + 0;   // no millis
     delete newtime;
-#endif
+
     return returnValue;
   }
-
 #endif
 
 

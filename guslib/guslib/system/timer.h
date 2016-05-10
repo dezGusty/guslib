@@ -26,8 +26,6 @@
 //
 //   Timer utility.
 //
-//   Last change:  $LastChangedDate: 2014-09-02 21:32:49 +0300 (Ma, 02 sep. 2014) $
-//   Revision:    $Revision: 669 $
 
 //
 // Includes
@@ -119,6 +117,17 @@ namespace guslib
   public:
     WinTimer();
     virtual ~WinTimer();
+    virtual TimeUnits getCurrentTimeUnits();
+    virtual TimeUnits getTimeSinceMidnight() const;
+  };
+#elif GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX
+  /// Linux implementation for the abstract timer.
+  class GUSLIB_EXPORT_SYMBOL LinuxTimer : public AbstractTimer
+  {
+  protected:
+  public:
+    LinuxTimer();
+    virtual ~LinuxTimer();
     virtual TimeUnits getCurrentTimeUnits();
     virtual TimeUnits getTimeSinceMidnight() const;
   };
