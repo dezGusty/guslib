@@ -46,7 +46,7 @@
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
 #include <guslib/system/systemwindowsfwd.h>
 #else
-# pragma message("Warning: UAC elevation not defined for non-windows environments");
+# pragma message("Warning: UAC elevation not defined for non-windows environments")
 #endif
 
 //
