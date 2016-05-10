@@ -89,7 +89,7 @@ namespace guslib
     /**
       Transforms an integer to a hex representation, as a string.
     */
-    GUSLIB_EXPORT_SYMBOL std::string IntToHexString(int number);
+    GUSLIB_EXPORT_SYMBOL std::string UnsignedToHexString(unsigned long number);
 
     GUSLIB_EXPORT_SYMBOL long long StringToLongLong(const std::string & s);
     GUSLIB_EXPORT_SYMBOL std::string LongLongToString(long long value);

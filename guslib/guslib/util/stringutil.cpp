@@ -219,7 +219,7 @@ namespace guslib
       return ss.str();
     }
 
-    std::string IntToHexString(unsigned int number)
+    std::string UnsignedToHexString(unsigned long number)
     {
       std::stringstream ss;
       ss << std::hex << number << std::dec;
