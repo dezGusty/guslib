@@ -141,9 +141,9 @@ namespace guslib
 #else
 #  if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
     // The windows timer will be the standard accessible timer, through the Timer name.
-    typedef WinTimer Timer;
+  typedef WinTimer Timer;
 #  else
-    // TODO: define a unix timer?
+  typedef LinuxTimer Timer;
 #  endif  // GUSLIB_PLATFORM_TYPE
 #endif  // GUSLIB_USE_OGRE_TIMERS == 1
 
