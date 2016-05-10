@@ -62,7 +62,7 @@ namespace guslib
     std::string caption_;
     GMenuItemList children_;
 
-    GMenuItem::Impl(const std::string& name, const std::string& caption)
+    Impl(const std::string& name, const std::string& caption)
       : name_(name),
         caption_(caption)
     {

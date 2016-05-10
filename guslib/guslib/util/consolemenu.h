@@ -282,7 +282,7 @@ namespace guslib
     Impl* impl_;
 
     /// DISABLED.
-    GMenuOption::GMenuOption(const GMenuOption& rhs) = delete;
+    GMenuOption(const GMenuOption& rhs) = delete;
   public:
     GMenuOption(const GMenu * masterMenu, const std::string &name, const std::string &capt = "");
     virtual ~GMenuOption();
