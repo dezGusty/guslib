@@ -37,6 +37,10 @@
 
 #include <stdlib.h>
 
+// Add memset support
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX
+# include <string.h>
+#endif
 //
 // C++ system files
 //
@@ -50,7 +54,7 @@
 
 // Support for launching of external applications.
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX
-#include <unistd.h>
+# include <unistd.h>
 #endif  // GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX
 
 //

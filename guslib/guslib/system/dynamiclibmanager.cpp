@@ -44,7 +44,7 @@ namespace guslib
   public:
     DynamicLibList libList_;
 
-    DynamicLibManagerUtil::Impl()
+    Impl()
     {
     }
   };

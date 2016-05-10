@@ -113,7 +113,13 @@ namespace guslib
       name += ".dll";
     }
 #endif
+
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
     instance_ = (DYNAMICLIB_HANDLE)DYNAMICLIB_LOAD(guslib::stringutil::StringToWString(name).c_str());
+#else
+    instance_ = (DYNAMICLIB_HANDLE)DYNAMICLIB_LOAD(name.c_str());
+#endif
+    
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_APPLE
     if (!instance_)
     {

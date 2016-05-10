@@ -59,7 +59,9 @@ namespace guslib
       alreadyExists = (dwLastError == ERROR_ALREADY_EXISTS || dwLastError == ERROR_ACCESS_DENIED);
 #else
       // TODO(Augustin Preda, 2014.04.13): implement:
-      pthread_mutex_init(&mutex, NULL);
+      pthread_mutex_t lock;
+      pthread_mutex_init(&lock, NULL);
+      return lock;
 #endif  // _WINDOWS
       return returnValue;
     }
@@ -109,6 +111,7 @@ namespace guslib
 
     bool TryToCreateProcessForCurrentApp(const std::string & restartParam, const std::string & additionalParams)
     {
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
       TCHAR szAppPath[MAX_PATH] = {0};
       GetModuleFileName(NULL, szAppPath, MAX_PATH);
 
@@ -150,8 +153,11 @@ namespace guslib
       wcscat_s(szAppPath, MAX_PATH, wszTempString);
 
       // Create another copy of processS
-      BOOL bResult = CreateProcess(NULL, szAppPath, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
-      return (bResult == TRUE);
+      bool bResult = CreateProcess(NULL, szAppPath, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
+      return (bResult == true);
+#else
+      return false;
+#endif
     }
   }
 }

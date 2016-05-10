@@ -464,7 +464,7 @@ namespace guslib
     std::string type_;
     std::string combinedCaption_;
 
-    GMenuOption::Impl(const std::string& type)
+    Impl(const std::string& type)
       : type_(type),
         combinedCaption_("")
     {

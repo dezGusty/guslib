@@ -45,10 +45,10 @@ namespace guslib
   typedef HANDLE MutexHandle;
 #else
   // LINUX
-  typedef int MutexHandle;
+  typedef pthread_mutex_t MutexHandle;
 #endif  // _WINDOWS
 
-    GUSLIB_EXPORT_SYMBOL MutexHandle CreateNamedMutex(const std::string &name, bool & alreadyExists, bool owner = TRUE);
+    GUSLIB_EXPORT_SYMBOL MutexHandle CreateNamedMutex(const std::string &name, bool & alreadyExists, bool owner = true);
 
     GUSLIB_EXPORT_SYMBOL void DestroyMutex(MutexHandle handle);
 

@@ -200,7 +200,7 @@ namespace guslib
     return curr_time.tv_sec * 1000 + curr_time.tv_usec;
   }
 
-  TimeUnits WinTimer::getTimeSinceMidnight() const
+  TimeUnits LinuxTimer::getTimeSinceMidnight() const
   {
     TimeUnits returnValue(0);
 

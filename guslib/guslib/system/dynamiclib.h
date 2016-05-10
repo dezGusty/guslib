@@ -44,7 +44,9 @@
 
 // Include OS specific headers.
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
-#include <guslib/system/systemwindowsfwd.h>
+# include <guslib/system/systemwindowsfwd.h>
+#elif GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX
+# include <dlfcn.h>
 #endif  // GUSLIB_PLATFORM_TYPE
 
 //
