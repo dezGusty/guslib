@@ -63,10 +63,9 @@ namespace guslib
     */
     static const std::string getProgramArguments();
 
-
     /**
       Get a list of program arguments, with the 1st being the actual call to the program itself.
-      @param allowGroupingByQuotation (Default: true). Specifies that the quotation marks are 
+      @param allowGroupingByQuotation (Default: true). Specifies that the quotation marks are
       grouping arguments together. As an example for: [app param1 "app param 2"]
       getListOfProgramArguments (false) will return 5 items: app, param1, "app, param, 2"
       getListOfProgramArguments (true) will return 3 items: app, param1, "app param 2"
@@ -76,19 +75,12 @@ namespace guslib
     /**
       Get a list of program arguments, with the 1st being the actual call to the program itself.
       @param arguments Custom argument list.
-      @param allowGroupingByQuotation (Default: true). 
+      @param allowGroupingByQuotation (Default: true).
       @see getListOfProgramArguments
     */
     static const std::vector <std::string> getListOfArguments(
-      const std::string & arguments, bool allowGroupingByQuotation = true);
-
-
-    /**
-      Get the program arguments and argument count in a typical classic (int main) mode.
-      @param[out] arguments The retrieved arguments grouped into a single string.
-      @param[out] argCount The retrieved number of arguments.
-    */
-    static void readProgramArgumentsAndCount(char *** arguments, int & argCount);
+      const std::string & arguments,
+      bool allowGroupingByQuotation = true);
   };
 }
 

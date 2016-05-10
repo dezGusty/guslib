@@ -61,7 +61,6 @@
 // String utility functions.
 #include "guslib/util/stringutil.h"
 
-
 namespace guslib
 {
   const std::string CommandLine::getProgramArguments()
@@ -79,7 +78,6 @@ namespace guslib
     return returnVal;
   }
 
-
   const std::vector <std::string> CommandLine::getListOfProgramArguments(bool allowGroupingByQuotation)
   {
     GTRACE(5, "Getting list of program arguments");
@@ -87,9 +85,9 @@ namespace guslib
     return getListOfArguments(cmdLine, allowGroupingByQuotation);
   }
 
-
   const std::vector <std::string> CommandLine::getListOfArguments(
-      const std::string & arguments, bool allowGroupingByQuotation)
+    const std::string & arguments,
+    bool allowGroupingByQuotation)
   {
     GTRACE(5, "Getting list of arguments for: [" << arguments
       << "]; quotation marks enabled: " << allowGroupingByQuotation);
@@ -166,7 +164,7 @@ namespace guslib
           else
           {
             // add the parameters, as usual
-            if (temp.length() >0)
+            if (temp.length() > 0)
             {
               returnValue.push_back(temp);
             }
@@ -188,30 +186,5 @@ namespace guslib
     }
 
     return returnValue;
-  }
-
-  void CommandLine::readProgramArgumentsAndCount(char *** inArguments, int & argCount)
-  {
-    std::vector <std::string> arglist;
-    arglist = getListOfProgramArguments();
-
-    * inArguments = new char *[arglist.size()];
-    for (unsigned i = 0; i < arglist.size(); ++i)
-    {
-      char * chTemp = new char[arglist[i].length() + 1];
-      chTemp[arglist[i].length()] = '\0';
-
-      GTRACE(7, "allocated (+1):" << arglist[i].length() + 1);
-      GTRACE(7, "lsize:" << arglist[i].size());
-      GTRACE(7, "copying to it: [" << arglist[i].c_str() << "]");
-
-      strcpy_s(chTemp, arglist[i].length(), arglist[i].c_str());
-      GTRACE(5, "args= ["<< chTemp << "]");
-
-      (*inArguments)[i] = chTemp;
-    }
-
-    GTRACE(5, "args="<< inArguments);
-    argCount = arglist.size();
   }
 }
