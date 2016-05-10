@@ -67,7 +67,11 @@
 // A simple exception class.
 #include "guslib/common/simpleexception.h"
 // Directory entity listing (3rd party lib).
-#include "guslib/thirdparty/dirent.h"
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
+# include "guslib/thirdparty/dirent.h"
+#elif GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX
+# include <dirent.h>
+#endif
 
 
 namespace guslib
