@@ -295,15 +295,32 @@ set (CMAKE_CXX_STANDARD 11)
 #     COMPILE_DEFINITIONS GUSLIB_LIB_BUILD
 # )
 
+SET (guslib_project_DEPENDENCIES "")
+MESSAGE (STATUS "Checking environment")
+
+IF (UNIX)
+    MESSAGE (STATUS "Unix")
+    SET (guslib_project_DEPENDENCIES
+        ${guslib_project_DEPENDENCIES}
+        dl
+    )
+ELSE ()
+    MESSAGE (STATUS "Non unix")
+ENDIF ()
 
 
 #
 # Link to dependencies
 #
 IF (Boost_FOUND)
-  TARGET_LINK_LIBRARIES(${GUSLIB_PROJECT_NAME} ${list_of_boost_libs_to_link})
+#   TARGET_LINK_LIBRARIES(${GUSLIB_PROJECT_NAME} ${list_of_boost_libs_to_link})
+  SET (guslib_project_DEPENDENCIES
+        ${guslib_project_DEPENDENCIES}
+        ${list_of_boost_libs_to_link}
+  )
 ENDIF ()
  
+TARGET_LINK_LIBRARIES(${GUSLIB_PROJECT_NAME} ${guslib_project_DEPENDENCIES})
 
 # if (APPLE AND NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
 #     # Set the INSTALL_PATH so that Components can be installed in the application package
