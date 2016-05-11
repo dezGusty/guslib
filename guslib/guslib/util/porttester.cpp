@@ -64,7 +64,7 @@
 
 namespace guslib
 {
-#if ACT_COMMON_PLATFORM_TYPE == ACT_COMMON_PLATFORM_TYPE_WINDOWS
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
  
   void InitializeSockets()
   {
@@ -132,7 +132,7 @@ namespace guslib
     }
   }
  
-#elif ACT_COMMON_PLATFORM_TYPE == ACT_COMMON_PLATFORM_TYPE_LINUX
+#elif GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX
   bool CanOpenTCPPortLinux(const char* address, unsigned int port_number)
   {
     int sockfd;
@@ -179,9 +179,9 @@ namespace guslib
  
   bool PortTester::CanOpenTCPPort(const char* address, unsigned int port_number)
   {
-#if ACT_COMMON_PLATFORM_TYPE == ACT_COMMON_PLATFORM_TYPE_WINDOWS
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
     return CanOpenTCPPortWindows(address, port_number);
-#elif ACT_COMMON_PLATFORM_TYPE == ACT_COMMON_PLATFORM_TYPE_LINUX
+#elif GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_LINUX
     return CanOpenTCPPortLinux(address, port_number);
 #endif
   }

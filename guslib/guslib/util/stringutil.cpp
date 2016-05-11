@@ -104,6 +104,7 @@ namespace guslib
         return std::string ();
       }
 
+#if GUSLIB_PLATFORM_TYPE==GUSLIB_PLATFORM_TYPE_WINDOWS
       size_t bufferSize;
 
       // first call to wcstombs_s to get the target buffer size
@@ -115,6 +116,10 @@ namespace guslib
       std::string temp(buffer);
       delete[] buffer;
       return temp;
+#elif GUSLIB_PLATFORM_TYPE==GUSLIB_PLATFORM_TYPE_LINUX
+      const std::string result(ws.begin(), ws.end());
+      return result;
+#endif
     }
 
     bool StringToBool(const std::string& s)

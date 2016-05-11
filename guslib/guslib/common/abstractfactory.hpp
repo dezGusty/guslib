@@ -61,7 +61,7 @@ class AbstractFactory
   public:
     typedef std::map <IdentifierType, ProductCreator> AssociativeMap;
 
-    AbstractFactory::AbstractFactory()
+    AbstractFactory()
     {
     }
 

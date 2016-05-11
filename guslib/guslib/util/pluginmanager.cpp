@@ -38,7 +38,7 @@
 //
 // C++ system headers
 //
-
+#include <algorithm>
 #include <string>
 #include <vector>
 
@@ -60,7 +60,7 @@ namespace guslib
     std::vector<Plugin*> pluginList_;
     std::vector<DynamicLib*> dynLibList_;
 
-    PluginManagerUtil::Impl()
+    Impl()
     {
     }
   };
