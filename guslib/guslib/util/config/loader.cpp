@@ -49,7 +49,7 @@ namespace guslib
     public:
       std::string loadedFileName_;
 
-      Loader::Impl(const std::string& loadedFileName)
+      Impl(const std::string& loadedFileName)
         : loadedFileName_(loadedFileName)
       {
 

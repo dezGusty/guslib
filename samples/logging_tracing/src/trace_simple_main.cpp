@@ -29,7 +29,7 @@
 // The tracing header.
 #include "guslib/trace/trace.h"
 
-void main()
+int main()
 {
   // Defines the output file to use
   std::string my_file_name("tracing_sample_1.log");
@@ -53,4 +53,6 @@ void main()
   GTRACE(-1, "It's possible to use negative levels also for even higher priority.");
 
   GSTOPTRACING(); // Destroys the trace object static instance; file handle closed.
+  
+  return 0;
 }

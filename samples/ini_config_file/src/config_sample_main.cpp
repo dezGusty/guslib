@@ -43,7 +43,7 @@ class SampleXmlLoader
   : public guslib::config::Loader
 {
 public:
-  static guslib::config::Loader* SampleXmlLoader::createLoader()
+  static guslib::config::Loader* createLoader()
   {
     return new SampleXmlLoader();
   }
@@ -68,7 +68,7 @@ public:
 
 };
 
-void main()
+int main()
 {
   GSTARTTRACING("config_sample_1.log", 10);
   GTRACE(3, "Started tracing");
@@ -120,4 +120,6 @@ void main()
 
   GTRACE(3, "done!");
   GSTOPTRACING();
+  
+  return 0;
 }

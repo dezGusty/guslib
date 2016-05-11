@@ -58,7 +58,7 @@ namespace guslib
   //
   // Store the factory instance here.
   //
-  GUSLIB_EXPIMP_TEMPLATE guslib::AbstractFactory < config::Loader, std::string, config::Loader*(*)() >* ExternalSingleton<guslib::AbstractFactory <
+  GUSLIB_EXPIMP_TEMPLATE template<> guslib::AbstractFactory < config::Loader, std::string, config::Loader*(*)()>* ExternalSingleton<guslib::AbstractFactory <
     config::Loader, std::string, config::Loader*(*)() >
   >::objectPtr_ = nullptr;
 
