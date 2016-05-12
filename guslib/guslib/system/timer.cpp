@@ -202,8 +202,13 @@ namespace guslib
 
   TimeUnits LinuxTimer::getTimeSinceMidnight() const
   {
+    struct timeval curr_time;
+    timeval time_of_day;
+    return curr_time.tv_sec * 1000 + curr_time.tv_usec;
+/*
     TimeUnits returnValue(0);
 
+    gettimeofday(&time_of_day, NULL);
     struct tm *newtime;
 
     time_t long_time;
@@ -218,6 +223,7 @@ namespace guslib
     delete newtime;
 
     return returnValue;
+*/
   }
 #endif
 
