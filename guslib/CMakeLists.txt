@@ -27,8 +27,8 @@ cmake_minimum_required(VERSION 3.2)
 SET (GUSLIB_PROJECT_NAME guslib)
 PROJECT (${GUSLIB_PROJECT_NAME})
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+SET(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_STANDARD_REQUIRED ON)
     
 SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../cmake/;${CMAKE_MODULE_PATH}")
 SET(GUSLIB_LIB_TYPE SHARED)
@@ -286,8 +286,6 @@ add_library(${GUSLIB_PROJECT_NAME}
     ${GUSLIB_LIB_TYPE}
     ${SOURCE_FILES})
 
-set (CMAKE_CXX_STANDARD 11)
-
 # TODO: define link options (static/non-static) and dll-export symbols (GUSLIB_EXP)/GUSLIB_IMP definitions.
 # set_target_properties(${GUSLIB_PROJECT_NAME}
 #     PROPERTIES
@@ -295,25 +293,20 @@ set (CMAKE_CXX_STANDARD 11)
 #     COMPILE_DEFINITIONS GUSLIB_LIB_BUILD
 # )
 
+#
+# Link to dependencies
+#
 SET (guslib_project_DEPENDENCIES "")
-MESSAGE (STATUS "Checking environment")
 
+# For Linux, we need the dl library (-ldl option) due to dlopen & co.
 IF (UNIX)
-    MESSAGE (STATUS "Unix")
     SET (guslib_project_DEPENDENCIES
         ${guslib_project_DEPENDENCIES}
         dl
     )
-ELSE ()
-    MESSAGE (STATUS "Non unix")
 ENDIF ()
 
-
-#
-# Link to dependencies
-#
 IF (Boost_FOUND)
-#   TARGET_LINK_LIBRARIES(${GUSLIB_PROJECT_NAME} ${list_of_boost_libs_to_link})
   SET (guslib_project_DEPENDENCIES
         ${guslib_project_DEPENDENCIES}
         ${list_of_boost_libs_to_link}
@@ -322,21 +315,7 @@ ENDIF ()
  
 TARGET_LINK_LIBRARIES(${GUSLIB_PROJECT_NAME} ${guslib_project_DEPENDENCIES})
 
-# if (APPLE AND NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
-#     # Set the INSTALL_PATH so that Components can be installed in the application package
-#     set_target_properties(guslib
-#        PROPERTIES BUILD_WITH_INSTALL_RPATH 1
-#        INSTALL_NAME_DIR "@executable_path/../Components"
-#     )
-# 
-# 	# Copy headers into the main Ogre framework
-# 	add_custom_command(TARGET OgreRTShaderSystem POST_BUILD
-# 	  COMMAND ditto ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h ${OGRE_BINARY_DIR}/lib/$(CONFIGURATION)/Ogre.framework/Headers/
-# 	)
-# endif()
-
-
-install(FILES ${SOURCE_FILES}
+INSTALL(FILES ${SOURCE_FILES}
   DESTINATION include/guslib
 )
 
@@ -386,12 +365,12 @@ SET_TARGET_PROPERTIES (${GUSLIB_PROJECT_NAME}
 )
 
 # install the build binary
-install(TARGETS ${GUSLIB_PROJECT_NAME}
+INSTALL(TARGETS ${GUSLIB_PROJECT_NAME}
   LIBRARY DESTINATION "${GUSLIB_DLL_OUTPUT_DIR}"
   RUNTIME DESTINATION "${GUSLIB_DLL_OUTPUT_DIR}"
   COMPONENT library)
 
-install(TARGETS ${GUSLIB_PROJECT_NAME}
+INSTALL(TARGETS ${GUSLIB_PROJECT_NAME}
   LIBRARY DESTINATION "${GUSLIB_LIB_OUTPUT_DIR}"
   RUNTIME DESTINATION "${GUSLIB_LIB_OUTPUT_DIR}"
   COMPONENT library)
