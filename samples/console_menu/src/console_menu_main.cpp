@@ -2,14 +2,21 @@
 // Included files.
 //
 
+//
+// Platform specific definitions and overall build options for the library.
+//
+#include <guslib/guslibbuildopts.h>
+
 // cout
 #include <iostream>
 
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
 // kbhit
 #include <conio.h>
 
 // sleep
 #include <Windows.h>
+#endif  //  GUSLIB_PLATFORM_TYPE_WINDOWS
 
 // console based menu - the main subject of this test.
 #include "consolemenu.h"
@@ -88,7 +95,9 @@ public:
 void drawMenu(GMenu *menu)
 {
   GMenuItemList vect = menu->getVisible()->getChildren();
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
   std::system("cls");
+#endif  //  GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
   cout << "--------------" << menu->getVisible()->getCaption() << "------------ (Press [`] for help)" << endl;
   for (GMenuItemList::iterator it = vect.begin(); it != vect.end(); ++it)
   {
@@ -185,10 +194,12 @@ void menutest()
 
   while (!bOver)
   {
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
     while (!_kbhit())
     {
       ::Sleep(17);
     }
+#endif
     char c;
     c = _getch();
     if (c == 'x')
