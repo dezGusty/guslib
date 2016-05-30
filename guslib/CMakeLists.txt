@@ -184,8 +184,6 @@ SET (SOURCE_FILES_UTIL_CFG
 SET (SOURCE_FILES_UTIL
   ./guslib/util/config.cpp
   ./guslib/util/config.h
-  ./guslib/util/consolemenu.cpp
-  ./guslib/util/consolemenu.h
   ./guslib/util/filehelper.cpp
   ./guslib/util/filehelper.h
   ./guslib/util/inifile.h

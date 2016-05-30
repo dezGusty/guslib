@@ -28,6 +28,6 @@ cmake_minimum_required(VERSION 3.0)
 
 add_subdirectory(ini_config_file)
 add_subdirectory(logging_tracing)
-# add_subdirectory(uac_elevation_demo)
+add_subdirectory(console_menu)
 
 
