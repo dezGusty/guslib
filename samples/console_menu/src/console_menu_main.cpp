@@ -201,7 +201,11 @@ void menutest()
     }
 #endif
     char c;
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
     c = _getch();
+#else
+    c = getchar();
+#endif
     if (c == 'x')
     {
       bOver = true;
@@ -230,11 +234,11 @@ void menutest()
   }
 }
 
-
-void main()
+int main()
 {
   menutest();
 
   cout << "done" << endl;
 
+  return 0;
 }
