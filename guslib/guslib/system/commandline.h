@@ -25,9 +25,6 @@
 //   THE SOFTWARE.
 //
 //   Command line handling utility
-//
-//   Last change:  $LastChangedDate: 2014-09-02 21:32:49 +0300 (Ma, 02 sep. 2014) $
-//   Revision:    $Revision: 669 $
 
 //
 // Includes

@@ -25,9 +25,6 @@
 //   THE SOFTWARE.
 //
 //   Forward the windows.h inclusion
-//
-//   Last change:  $LastChangedDate$
-//   Revision:    $Revision$
 
 #define NOMINMAX
 #include <windows.h>

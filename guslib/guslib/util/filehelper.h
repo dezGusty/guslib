@@ -25,9 +25,6 @@
 //   THE SOFTWARE.
 //
 //   File handling helper class.
-//
-//   Last change:  $LastChangedDate: 2013-06-20 23:19:27 +0200 (J, 20 iun. 2013) $
-//   Revision:    $Revision: 574 $
 
 //
 // Includes

@@ -1,7 +1,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -56,7 +56,7 @@ BEGIN
             VALUE "FileDescription", "guslib - small utility library"
             VALUE "FileVersion", GUSLIB_STR_FILE_VERSION
             VALUE "InternalName", "guslib"
-            VALUE "LegalCopyright", "Copyright (C) 2010 - 2014"
+            VALUE "LegalCopyright", "Copyright (C) 2010 - 2016"
             VALUE "OriginalFilename", "guslib.dll"
             VALUE "ProductName", "Gusty's Library"
             VALUE "ProductVersion", GUSLIB_STR_PROD_VERSION

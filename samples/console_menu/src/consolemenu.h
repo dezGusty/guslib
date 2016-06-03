@@ -25,9 +25,6 @@
 //   THE SOFTWARE.
 //
 //   Menu background logic handling.
-//
-//   Last change:  $LastChangedDate: 2014-09-11 20:14:06 +0200 (J, 11 sep. 2014) $
-//   Revision:    $Revision: 672 $
 
 //
 // Includes

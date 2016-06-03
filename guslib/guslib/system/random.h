@@ -25,9 +25,6 @@
 //   THE SOFTWARE.
 //
 //   Random number generating utility.
-//
-//   Last change:  $LastChangedDate: 2014-04-13 22:58:12 +0300 (D, 13 apr. 2014) $
-//   Revision:    $Revision: 647 $
 
 //
 // Includes

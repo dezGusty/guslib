@@ -29,10 +29,6 @@
 //   https://code.msdn.microsoft.com/windowsdesktop/CppUACSelfElevation-981c0160
 //   and here
 //   http://jagt.github.io/clumsy/
-//
-//   Last change:  $LastChangedDate$
-//   Revision:    $Revision$
-
 
 //
 // Includes
@@ -71,10 +67,11 @@ namespace guslib
     /**
       Attempt to relaunch the current process, while also calling for a
       manual elevation from the Windows User Account Control.
-      @param Specifies if the application should quit if the user does not allow the elevation.
+      @param quit_if_elevation_denied Specifies if the application should quit 
+             if the user does not allow the elevation.
       @return True if the application should quit, False otherwise.
     */
-    static bool relaunchForManualElevation(bool quitIfElevationDenied);
+    static bool relaunchForManualElevation(bool quit_if_elevation_denied);
   };
 }
 

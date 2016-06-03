@@ -25,9 +25,6 @@
 //
 //   This header will change between different releases of guslib. Including the header will result in a recompile
 //   when a new guslib version is released.
-//
-//   Last change: $LastChangedDate$
-//   Revision:    $Revision$
 
 //
 // This file provides definitions used in determining the platform on which the CET VCS shall run.

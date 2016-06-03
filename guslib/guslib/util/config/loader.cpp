@@ -22,9 +22,6 @@
 //   THE SOFTWARE.
 //
 //   Application configuration utility.
-//
-//   Last change:  $LastChangedDate$
-//   Revision:    $Revision$
 
 //
 // Includes

@@ -26,9 +26,6 @@
 //
 //   This header will change between different releases of guslib. Including the header will result in a recompile
 //   when a new guslib version is released.
-//
-//   Last change: $LastChangedDate: 2014-09-11 20:14:06 +0200 (J, 11 sep. 2014) $
-//   Revision:    $Revision: 672 $
 
 //
 // This file provides version information for the guslib component.

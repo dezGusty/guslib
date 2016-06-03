@@ -22,9 +22,6 @@
 //   THE SOFTWARE.
 //
 //   System Mutex handling
-//
-//   Last change:  $LastChangedDate: 2014-04-16 00:16:54 +0300 (Mi, 16 apr. 2014) $
-//   Revision:    $Revision: 648 $
 
 //
 // Includes

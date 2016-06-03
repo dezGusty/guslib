@@ -24,9 +24,6 @@
 //   THE SOFTWARE.
 //
 //   External process handling helper class.
-//
-//   Last change:  $LastChangedDate$
-//   Revision:    $Revision$
 
 //
 // Includes

@@ -25,9 +25,6 @@
 //   THE SOFTWARE.
 //
 //   Application configuration utility.
-//
-//   Last change:  $LastChangedDate: 2014-07-04 08:56:45 +0300 (V, 04 iul. 2014) $
-//   Revision:    $Revision: 663 $
 
 //
 // Includes

@@ -25,9 +25,6 @@
 //   THE SOFTWARE.
 //
 //   Dynamic library support class, based on the design of plugins in the OGRE3D library
-//
-//   Last change:  $LastChangedDate$
-//   Revision:    $Revision$
 
 //
 // Includes

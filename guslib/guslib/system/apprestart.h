@@ -26,9 +26,6 @@
 //
 //   Application restart utility.
 //   Separate between Windows and other OS restart classes.
-//
-//   Last change:  $LastChangedDate: 2014-09-02 21:32:49 +0300 (Ma, 02 sep. 2014) $
-//   Revision:    $Revision: 669 $
 
 
 // Command line switch for restarted application

@@ -26,9 +26,6 @@
 //   https://code.msdn.microsoft.com/windowsdesktop/CppUACSelfElevation-981c0160
 //   and here
 //   http://jagt.github.io/clumsy/
-//
-//   Last change:  $LastChangedDate$
-//   Revision:    $Revision$
 
 //
 // Includes
