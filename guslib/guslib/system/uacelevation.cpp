@@ -1,7 +1,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2015  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -68,12 +68,12 @@ namespace guslib
     // Allocate and initialize a SID of the administrators group.
     SID_IDENTIFIER_AUTHORITY NtAuthority = SECURITY_NT_AUTHORITY;
     if (!AllocateAndInitializeSid(
-          &NtAuthority,
-          2,
-          SECURITY_BUILTIN_DOMAIN_RID,
-          DOMAIN_ALIAS_RID_ADMINS,
-          0, 0, 0, 0, 0, 0,
-          &ptrAdministratorsGroup))
+      &NtAuthority,
+      2,
+      SECURITY_BUILTIN_DOMAIN_RID,
+      DOMAIN_ALIAS_RID_ADMINS,
+      0, 0, 0, 0, 0, 0,
+      &ptrAdministratorsGroup))
     {
       dwError = GetLastError();
 
@@ -117,7 +117,6 @@ namespace guslib
 #endif
   }
 
-
   /**
     Checks to see whether the application is running with elevated permissions.
     @return True if the application has elevated permissions, False otherwise.
@@ -127,17 +126,17 @@ namespace guslib
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
     bool elevated = false;
     HANDLE hToken = NULL;
-    if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken)) 
+    if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken))
     {
       TOKEN_ELEVATION Elevation;
       DWORD cbSize = sizeof(TOKEN_ELEVATION);
-      if (GetTokenInformation(hToken, TokenElevation, &Elevation, sizeof(Elevation), &cbSize)) 
+      if (GetTokenInformation(hToken, TokenElevation, &Elevation, sizeof(Elevation), &cbSize))
       {
         elevated = Elevation.TokenIsElevated != 0;
       }
     }
 
-    if (hToken) 
+    if (hToken)
     {
       CloseHandle(hToken);
     }
@@ -147,7 +146,6 @@ namespace guslib
     return false;
 #endif
   }
-  
 
   /**
     Attempt to relaunch the current process, while also calling for a

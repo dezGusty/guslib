@@ -1,7 +1,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -59,18 +59,15 @@ namespace guslib
   {
   }
 
-
   AbstractTimer::~AbstractTimer()
   {
   }
-
 
   void AbstractTimer::reset()
   {
     // Call to abstract function. this must not be called in the abstract class' constructor.
     latestTime = getCurrentTimeUnits();
   }
-
 
   TimeUnits AbstractTimer::elapsed()
   {
@@ -87,7 +84,6 @@ namespace guslib
     return tu;
   }
 
-
   // --------------------- the Ogre timer --------------------------
 #if GUSLIB_USE_OGRE_TIMERS == 1
   GusLibOgreTimer::GusLibOgreTimer()
@@ -98,7 +94,6 @@ namespace guslib
   GusLibOgreTimer::~GusLibOgreTimer()
   {
   }
-
 
   TimeUnits GusLibOgreTimer::getCurrentTimeUnits()
   {
@@ -141,7 +136,6 @@ namespace guslib
   }
 #endif  // GUSLIB_USE_OGRE_TIMERS == 1
 
-
   // --------------------- the windows timer --------------------------
 
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
@@ -151,11 +145,9 @@ namespace guslib
     reset();
   }
 
-
   WinTimer::~WinTimer()
   {
   }
-
 
   TimeUnits WinTimer::getCurrentTimeUnits()
   {
@@ -181,12 +173,10 @@ namespace guslib
 
   LinuxTimer::LinuxTimer()
   {
-
   }
 
   LinuxTimer::~LinuxTimer()
   {
-
   }
 
   TimeUnits LinuxTimer::getCurrentTimeUnits()
@@ -202,28 +192,27 @@ namespace guslib
     struct timeval curr_time;
     timeval time_of_day;
     return curr_time.tv_sec * 1000 + curr_time.tv_usec;
-/*
-    TimeUnits returnValue(0);
+    /*
+        TimeUnits returnValue(0);
 
-    gettimeofday(&time_of_day, NULL);
-    struct tm *newtime;
+        gettimeofday(&time_of_day, NULL);
+        struct tm *newtime;
 
-    time_t long_time;
+        time_t long_time;
 
-    time(&long_time);
-    newtime = localtime(&long_time);  // Convert to local time.
+        time(&long_time);
+        newtime = localtime(&long_time);  // Convert to local time.
 
-    returnValue = newtime->tm_hour;
-    returnValue = returnValue * 60 + newtime->tm_min;
-    returnValue = returnValue * 60 + newtime->tm_sec;
-    returnValue = returnValue * 1000 + 0;   // no millis
-    delete newtime;
+        returnValue = newtime->tm_hour;
+        returnValue = returnValue * 60 + newtime->tm_min;
+        returnValue = returnValue * 60 + newtime->tm_sec;
+        returnValue = returnValue * 1000 + 0;   // no millis
+        delete newtime;
 
-    return returnValue;
-*/
+        return returnValue;
+    */
   }
 #endif
-
 
   // ------------------------- app clock ---------------------------
 
@@ -268,7 +257,6 @@ namespace guslib
     return tu;
   }
 
-
   // ------------------------- sys clock ---------------------------
 
   SystemClockUtil::SystemClockUtil()
@@ -281,7 +269,6 @@ namespace guslib
     // so that it has an offset.
     initialTime_ = timeSinceStartup - initialTime_;
   }
-
 
   TimeUnits SystemClockUtil::getTimeFromStart()
   {

@@ -1,7 +1,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -63,7 +63,6 @@ namespace guslib
       return returnValue;
     }
 
-
     void DestroyMutex(MutexHandle handle)
     {
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
@@ -72,7 +71,6 @@ namespace guslib
       // TODO(Augustin Preda, 2014.04.13): implement
 #endif
     }
-
 
     void UnlockMutex(MutexHandle handle)
     {
@@ -105,15 +103,14 @@ namespace guslib
 #endif
     }
 
-
     bool TryToCreateProcessForCurrentApp(const std::string & restartParam, const std::string & additionalParams)
     {
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
-      TCHAR szAppPath[MAX_PATH] = {0};
+      TCHAR szAppPath[MAX_PATH] = { 0 };
       GetModuleFileName(NULL, szAppPath, MAX_PATH);
 
-      STARTUPINFO        si = {0};
-      PROCESS_INFORMATION    pi = {0};
+      STARTUPINFO        si = { 0 };
+      PROCESS_INFORMATION    pi = { 0 };
       si.cb = sizeof(STARTUPINFO);
       // Create New Instance command line
       // Copy the application path, including the application's name itself.
@@ -132,10 +129,10 @@ namespace guslib
       {
         for (int i = nLen + 1; i > 1 && i < MAX_PATH; --i)
         {
-          szAppPath[i] = szAppPath[i-1];
+          szAppPath[i] = szAppPath[i - 1];
         }
-        szAppPath[nLen+1] = '\"';
-        szAppPath[0]='\"';
+        szAppPath[nLen + 1] = '\"';
+        szAppPath[0] = '\"';
       }
 
       // Now add the application's parameters, separated by space.

@@ -4,7 +4,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -39,10 +39,10 @@ namespace guslib
   namespace mutex
   {
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
-  typedef HANDLE MutexHandle;
+    typedef HANDLE MutexHandle;
 #else
-  // LINUX
-  typedef pthread_mutex_t MutexHandle;
+    // LINUX
+    typedef pthread_mutex_t MutexHandle;
 #endif  // _WINDOWS
 
     GUSLIB_EXPORT_SYMBOL MutexHandle CreateNamedMutex(const std::string &name, bool & alreadyExists, bool owner = true);
@@ -56,7 +56,7 @@ namespace guslib
     GUSLIB_EXPORT_SYMBOL void UnlockMutex(MutexHandle handle);
 
     GUSLIB_EXPORT_SYMBOL bool TryToCreateProcessForCurrentApp(
-        const std::string & restartParam, const std::string & additionalParams);
+      const std::string & restartParam, const std::string & additionalParams);
   }
 }
 

@@ -4,7 +4,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2015  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -67,7 +67,7 @@ namespace guslib
     /**
       Attempt to relaunch the current process, while also calling for a
       manual elevation from the Windows User Account Control.
-      @param quit_if_elevation_denied Specifies if the application should quit 
+      @param quit_if_elevation_denied Specifies if the application should quit
              if the user does not allow the elevation.
       @return True if the application should quit, False otherwise.
     */

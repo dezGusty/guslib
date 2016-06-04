@@ -1,7 +1,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -59,7 +59,6 @@ namespace guslib
     }
   };
 
-
   //
   // ----------------------------- Dynamic Lib implementation ---------------------------------
   //
@@ -116,7 +115,7 @@ namespace guslib
 #else
     instance_ = (DYNAMICLIB_HANDLE)DYNAMICLIB_LOAD(name.c_str());
 #endif
-    
+
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_APPLE
     if (!instance_)
     {

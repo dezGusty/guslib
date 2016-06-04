@@ -4,7 +4,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,6 @@
 //
 //   Application restart utility.
 //   Separate between Windows and other OS restart classes.
-
 
 // Command line switch for restarted application
 
@@ -82,7 +81,7 @@ namespace guslib
     /// Keep in mind that for this to work, you need to close the current instance
     /// of the application (which will become inactive).
     /// You must close the current instance as soon as possible.
-    virtual bool restart(std::string additionalParams="") = 0;
+    virtual bool restart(std::string additionalParams = "") = 0;
 
     /// Clear the locking restart mutex.
     /// You must call this function before exiting the application in a non-restart manner.
@@ -90,7 +89,6 @@ namespace guslib
     /// (The residue mutexes will point to something else).
     virtual void finishRestart() = 0;
   };
-
 
   /// Class to hold the restart related functions.
   /// It's used as a namespace to group the functions together.
@@ -108,9 +106,9 @@ namespace guslib
     /// Constructor; used only for data initialization.
     AppRestartUtil()
       : restarterMutex_(0),  // Mutex
-        bWasRestarted(false),
-        restartParam_("--Restart"),
-        mutexName_("guslib--rr")
+      bWasRestarted(false),
+      restartParam_("--Restart"),
+      mutexName_("guslib--rr")
     {
     }
 
@@ -147,7 +145,7 @@ namespace guslib
       // Try to Create Mutex
       restarterMutex_ = guslib::mutex::CreateNamedMutex(mutexName_, alreadyRunning, false);
 
-      if (alreadyRunning )
+      if (alreadyRunning)
       {
         // Waiting for previous instance release mutex
         guslib::mutex::LockMutex(restarterMutex_);
@@ -163,7 +161,7 @@ namespace guslib
     /// Keep in mind that for this to work, you need to close the current instance
     /// of the application (which will become inactive).
     /// You must close the current instance as soon as possible.
-    virtual bool restart(std::string additionalParams="")
+    virtual bool restart(std::string additionalParams = "")
     {
       // Restart App
       bool alreadyRunning;

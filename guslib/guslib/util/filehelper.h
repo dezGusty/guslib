@@ -4,7 +4,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -92,9 +92,9 @@ namespace guslib
       included in the results.
     */
     GUSLIB_EXPORT_SYMBOL std::vector <std::string> GetListOfMatchingFileNames(
-        const std::vector <std::string> folderList,
-        const std::vector <std::string> mandatoryFilters,
-        const std::vector <std::string> forbiddenFilters);
+      const std::vector <std::string> folderList,
+      const std::vector <std::string> mandatoryFilters,
+      const std::vector <std::string> forbiddenFilters);
 
     /**
       Ensure that the given path contains a trailing slash or backslash char.
@@ -108,8 +108,8 @@ namespace guslib
       @return The parsed string.
     */
     GUSLIB_EXPORT_SYMBOL std::string NormalizeFileOrFolderName(
-        const std::string& fileFolderName,
-        bool useForwardSlash);
+      const std::string& fileFolderName,
+      bool useForwardSlash);
 
     /**
       Ensure that all the separators in the specified file or folder name are using the same separator.
@@ -127,9 +127,9 @@ namespace guslib
       @return The parsed string, containing a trailing separator.
     */
     GUSLIB_EXPORT_SYMBOL std::string EnsureTrailingSeparator(
-        const std::string& directoryName,
-        bool useForwardSlash,
-        bool useTrailingSeparator);
+      const std::string& directoryName,
+      bool useForwardSlash,
+      bool useTrailingSeparator);
 
     /**
       Remove the last folder from a folder name.
@@ -138,8 +138,8 @@ namespace guslib
       @return The path without the last folder
     */
     GUSLIB_EXPORT_SYMBOL std::string RemoveLastFolderFromName(
-        const std::string& name,
-        bool keepTrailingSeparator);
+      const std::string& name,
+      bool keepTrailingSeparator);
 
     /**
       Verify whether a string (content) has any other substrings in it (matchlist)
@@ -151,20 +151,19 @@ namespace guslib
       in the given content
     */
     GUSLIB_EXPORT_SYMBOL bool SubstringListMatch(
-        const std::string& content,
-        const std::vector <std::string> matchingList,
-        bool mustMatch = true,
-        bool emptyContentMeansMatch = true);
+      const std::string& content,
+      const std::vector <std::string> matchingList,
+      bool mustMatch = true,
+      bool emptyContentMeansMatch = true);
 
     /**
       Transcopy a file (Copy with transformations).
       Copy the contents of source_file into dest_file, taking care in the course of this to apply the transformations.
     */
     GUSLIB_EXPORT_SYMBOL bool TranscopyFile(
-        const std::string& source_file_name,
-        const std::string& dest_file_name,
-        std::map<std::string, std::string> transformations);
-
+      const std::string& source_file_name,
+      const std::string& dest_file_name,
+      std::map<std::string, std::string> transformations);
   }
 }
 

@@ -4,7 +4,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +54,6 @@
 
 #include "guslib/common/singleton.hpp"
 
-
 #if GUSLIB_USE_OGRE_TIMERS == 1
 #  include "OgreTimer.h"
 #endif
@@ -62,7 +61,6 @@
 namespace guslib
 {
   typedef long long TimeUnits;
-
 
   /// Abstract timer class, has the entire timer functionality and logic, but has no access
   /// to time passing functions.
@@ -108,7 +106,6 @@ namespace guslib
   };
 #endif  // GUSLIB_USE_OGRE_TIMERS == 1
 
-
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
   /// Windows implementation for the abstract timer.
   class GUSLIB_EXPORT_SYMBOL WinTimer : public AbstractTimer
@@ -133,7 +130,6 @@ namespace guslib
   };
 #endif
 
-
   // Redirection of the timer.
 #if GUSLIB_USE_OGRE_TIMERS == 1
   // The Ogre timer will be the standard accessible timer, through the Timer name.
@@ -147,9 +143,7 @@ namespace guslib
 #  endif  // GUSLIB_PLATFORM_TYPE
 #endif  // GUSLIB_USE_OGRE_TIMERS == 1
 
-
   class GUSLIB_EXPORT_SYMBOL ApplicationClockUtil;
-
 
   ///
   /// The application clock utility class.
@@ -218,9 +212,7 @@ namespace guslib
     virtual std::string getTimeAsString();
   };
 
-
   typedef GUSLIB_EXPORT_SYMBOL guslib::Singleton <ApplicationClockUtil> AppClock;
-
 
   ///
   /// The system clock utility class.
@@ -333,7 +325,6 @@ namespace guslib
       return s;
     }
   };
-
 
   typedef GUSLIB_EXPORT_SYMBOL guslib::Singleton <SystemClockUtil> SysClock;
 }

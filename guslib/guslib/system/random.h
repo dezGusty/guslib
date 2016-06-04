@@ -4,7 +4,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -48,11 +48,10 @@
 //
 #include <guslib/common/singleton.hpp>
 
-
 namespace guslib
 {
-  #define GMINRANDOM 0
-  #define GMAXRANDOM 10000
+#define GMINRANDOM 0
+#define GMAXRANDOM 10000
 
   /// Common interface for random numbers.
   class GUSLIB_EXPORT_SYMBOL AbstractRandomInterface
@@ -74,12 +73,12 @@ namespace guslib
 #if GUSLIB_USE_BOOST_RANDOM
 
   // Defines for the boost generators and distributors.
-  #define GGENERATORTYPE boost::mt19937
-  #define GDISTRIBUTORTYPE boost::uniform_int<>
-  #define GADVGENERATORTYPE boost::variate_generator<GGENERATORTYPE&, GDISTRIBUTORTYPE>
+#define GGENERATORTYPE boost::mt19937
+#define GDISTRIBUTORTYPE boost::uniform_int<>
+#define GADVGENERATORTYPE boost::variate_generator<GGENERATORTYPE&, GDISTRIBUTORTYPE>
 
-  ///  Simple class for random values.
-  /// It uses the boost random libs internally, with a simple number generator and an integer number distribution.
+///  Simple class for random values.
+/// It uses the boost random libs internally, with a simple number generator and an integer number distribution.
   class GUSLIB_EXPORT_SYMBOL GBoostRandom : public AbstractRandomInterface
   {
   protected:

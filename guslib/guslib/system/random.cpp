@@ -1,7 +1,7 @@
 //   This file is part of the guslib library, licensed under the terms of the MIT License.
 //
 //   The MIT License
-//   Copyright (C) 2010-2014  Augustin Preda (thegusty999@gmail.com)
+//   Copyright (C) 2010-2016  Augustin Preda (thegusty999@gmail.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
 //   of this software and associated documentation files (the "Software"), to deal
@@ -48,7 +48,6 @@
 //
 #include "guslib/system/timer.h"
 
-
 namespace guslib
 {
   // Different implementation according to the used base type.
@@ -60,12 +59,10 @@ namespace guslib
     initialize();
   }
 
-
   GBoostRandom::~GBoostRandom()
   {
     //  nothing to delete;
   }
-
 
   void GBoostRandom::initialize()
   {
@@ -80,7 +77,6 @@ namespace guslib
     // std::time(0) may not be the best seed, but it is enough for the needs the kind of which this class is intended.
     generator->seed(static_cast<unsigned int>(std::time(0)));
   }
-
 
   long GBoostRandom::getValueUpTo(long maxValue)
   {
@@ -146,10 +142,9 @@ namespace guslib
       max = value2;
     }
 
-    long interval = max-min + 1;
+    long interval = max - min + 1;
     return getValueUpTo(interval) + min;
   }
-
 
   BasicRandom::BasicRandom()
   {
