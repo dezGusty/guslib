@@ -51,13 +51,15 @@ Rem
 Set found_batch=0
 Set batch_to_run="%VS140COMNTOOLS%..\..\VC\vcvarsall.bat"
 
-REM Set found_batch=1
-REM Echo.Current directory is !CD!
-REM Echo.Calling VSExpress variable setting batch file...
-REM If Not Exist !batch_to_run! (
-REM   Echo.Could not find VS 2015 env batch file
-REM   Set found_batch=0
-REM )
+Set found_batch=1
+Echo.Current directory is !CD!
+Echo.Calling VSExpress variable setting batch file...
+If Not Exist !batch_to_run! (
+  Echo.Could not find VS 2015 env batch file
+  Set found_batch=0
+) Else (
+  Echo.Found VS 2015; called batch file: !batch_to_run!
+)
 
 If found_batch==0 (
   Rem Try again
@@ -66,6 +68,8 @@ If found_batch==0 (
   If Not Exist !batch_to_run! (
     Echo.Could not find VS 2013 env batch file
     Set found_batch=0
+  ) Else (
+    Echo.Found VS 2013; called batch file: !batch_to_run!
   )
 )
 
@@ -77,12 +81,13 @@ If found_batch==0 (
 
 )
 
-CALL !batch_to_run! x86
+REM CALL !batch_to_run! x86
+CALL !batch_to_run! x64
 
 Echo.Preparing build switches...
-REM Set PlatformType=x64
+Set PlatformType=x64
 Rem Alternatively:
-Set PlatformType=Win32
+REM Set PlatformType=Win32
 SET MSBUILD_SWITCHES=/nologo /consoleloggerparameters:Verbosity=minimal /maxcpucount /nodeReuse:true /target:Rebuild /property:Configuration="Release";Platform=!PlatformType!
 
 Rem

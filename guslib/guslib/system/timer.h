@@ -54,10 +54,6 @@
 
 #include "guslib/common/singleton.hpp"
 
-#if GUSLIB_USE_OGRE_TIMERS == 1
-#  include "OgreTimer.h"
-#endif
-
 namespace guslib
 {
   typedef long long TimeUnits;
@@ -89,23 +85,6 @@ namespace guslib
     virtual TimeUnits renew();
   };
 
-#if GUSLIB_USE_OGRE_TIMERS == 1
-  /// Ogre implementation using the Ogre timers. Requires the OGRE3D library!
-  class GusLibOgreTimer
-    : public AbstractTimer
-  {
-  protected:
-    Ogre::Timer timer_;
-  public:
-    GusLibOgreTimer();
-    virtual ~GusLibOgreTimer();
-    virtual TimeUnits getCurrentTimeUnits();
-    virtual TimeUnits getTimeSinceMidnight() const;
-    /// Resets the timer duration to zero
-    virtual void reset();
-  };
-#endif  // GUSLIB_USE_OGRE_TIMERS == 1
-
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
   /// Windows implementation for the abstract timer.
   class GUSLIB_EXPORT_SYMBOL WinTimer : public AbstractTimer
@@ -131,17 +110,12 @@ namespace guslib
 #endif
 
   // Redirection of the timer.
-#if GUSLIB_USE_OGRE_TIMERS == 1
-  // The Ogre timer will be the standard accessible timer, through the Timer name.
-  typedef GusLibOgreTimer Timer;
-#else
-#  if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
-    // The windows timer will be the standard accessible timer, through the Timer name.
+#if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
+  // The windows timer will be the standard accessible timer, through the Timer name.
   typedef WinTimer Timer;
-#  else
+#else
   typedef LinuxTimer Timer;
-#  endif  // GUSLIB_PLATFORM_TYPE
-#endif  // GUSLIB_USE_OGRE_TIMERS == 1
+#endif  // GUSLIB_PLATFORM_TYPE
 
   class GUSLIB_EXPORT_SYMBOL ApplicationClockUtil;
 

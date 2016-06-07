@@ -230,7 +230,7 @@ namespace guslib
     std::string GetExtensionFromFileName(const std::string &fileName)
     {
       std::string result;
-      unsigned foundPos = fileName.find_last_of(".");
+      size_t foundPos = fileName.find_last_of(".");
       if (foundPos != std::string::npos)
       {
         // Name is result.substr(0, foundPos);
@@ -263,7 +263,7 @@ namespace guslib
       }
 
       int start_pos = 0;
-      int used_len = source_content.length();
+      size_t used_len = source_content.length();
 
       if (first_char == '\"')
       {

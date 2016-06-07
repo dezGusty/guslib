@@ -95,12 +95,5 @@
 #define GUSLIB_USE_BOOST_RANDOM ${GUSLIB_FLAG_USE_BOOST_RANDOM_NUM}
 #endif
 
-/**
-  Define whether to add the timers defined by the OGRE3D library and use them as a default.
- */
-#ifndef GUSLIB_USE_OGRE_TIMERS
-#define GUSLIB_USE_OGRE_TIMERS ${GUSLIB_USE_OGRE_TIMERS_NUM}
-#endif
-
 
 #endif  // GUSLIB_GUSLIBBUILDOPTS_H
