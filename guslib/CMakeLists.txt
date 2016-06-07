@@ -55,7 +55,6 @@ REMOVE_DEFINITIONS(-DGUSLIB_IMP)
 OPTION(GUSLIB_FLAG_SINGLETONINSTANCE "When using the singleton, if this option is NOT enabled, you need to instantiate the singleton yourself " ON)
 OPTION(GUSLIB_FLAG_USE_BOOST_RANDOM "Use the boost random number generator instead of the basic implementation" OFF)
 OPTION(GUSLIB_THREAD_SUPPORT "Specify whether to use threading support or not." ON)
-OPTION(GUSLIB_USE_OGRE_TIMERS "Specify whether to use OGRE timers instead of custom timers." OFF)
 
 #
 # Identify the threading options

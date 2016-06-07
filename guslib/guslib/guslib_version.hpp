@@ -69,12 +69,12 @@
 //
 
 // Major versiom
-#define GUSLIB_NUM_MAJOR_VER_SIMPLE 1
+#define GUSLIB_NUM_MAJOR_VER_SIMPLE 2
 
 // Minor versions. Please keep in sync!
-#define GUSLIB_NUM_MINOR_VER_SIMPLE 9
-#define GUSLIB_NUM_MINOR_VER_2DIGITS 09
-#define GUSLIB_NUM_MINOR_VER_3DIGITS 009
+#define GUSLIB_NUM_MINOR_VER_SIMPLE 0
+#define GUSLIB_NUM_MINOR_VER_2DIGITS 00
+#define GUSLIB_NUM_MINOR_VER_3DIGITS 000
 
 // Patch versions. Please keep in sync!
 #define GUSLIB_NUM_PATCH_VER_SIMPLE 0.0
