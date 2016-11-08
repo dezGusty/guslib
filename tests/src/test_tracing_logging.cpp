@@ -26,6 +26,8 @@
 // Includes
 //
 
+#include <iostream>
+
 // The tracing header.
 #include "guslib/trace/trace.h"
 
@@ -37,7 +39,7 @@ int main()
   // Defines the trace level to use. All commands with a trace level higher than this shall be ignored.
   int trace_level = 4; // Level of tracing
 
-                       // Starts writing to the file.
+  // Starts writing to the file.
   GSTARTTRACING(my_file_name.c_str(), trace_level);
 
   // Adding some entries.
@@ -52,7 +54,15 @@ int main()
   GTRACE(3, "This works with streams, so it is possible to " << "group" << " more texts using the << operator.");
   GTRACE(-1, "It's possible to use negative levels also for even higher priority.");
 
-  GSTOPTRACING(); // Destroys the trace object static instance; file handle closed.
+  std::string ignored_content;
+  std::cout << "Close the application (console) using the window X button in the corner." << std::endl;
+  std::cout << "... or enter some text and press enter:" << std::endl;
+  std::cin >> ignored_content;
   
+  GTRACE(3, "Done.");
+  std::cout << "Got content: " << ignored_content << std::endl;
+  
+  GSTOPTRACING(); // Destroys the trace object static instance; file handle closed.
+
   return 0;
 }

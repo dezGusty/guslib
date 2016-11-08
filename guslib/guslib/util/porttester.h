@@ -44,7 +44,7 @@ namespace guslib
   class PortTester
   {
   public:
-    
+
     /**
      * Checks to see whether a TCP port can be opened.
      * @param address The address to connect to.
