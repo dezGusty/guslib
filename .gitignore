@@ -32,3 +32,8 @@ build/
 build64/
 guslib/guslib/guslibbuildopts.h
 bin/
+CMakeFiles/
+
+cmake_install.cmake
+Makefile
+CMakeCache.txt

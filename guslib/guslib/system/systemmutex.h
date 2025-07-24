@@ -30,6 +30,9 @@
 
 #if GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
 #include <guslib/system/systemwindowsfwd.h>
+#else // LINUX
+#include <pthread.h>
+
 #endif  // GUSLIB_PLATFORM_TYPE == GUSLIB_PLATFORM_TYPE_WINDOWS
 
 #include <string>
