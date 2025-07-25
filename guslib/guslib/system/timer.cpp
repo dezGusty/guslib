@@ -137,28 +137,20 @@ namespace guslib
 
   TimeUnits LinuxTimer::getTimeSinceMidnight() const
   {
+    // TODO: this uses milliseconds, but the standard Linux would be microseconds, so users may expect a different value.
     struct timeval curr_time;
-    timeval time_of_day;
-    return curr_time.tv_sec * 1000 + curr_time.tv_usec;
-    /*
-        TimeUnits returnValue(0);
+    gettimeofday(&curr_time, NULL);
 
-        gettimeofday(&time_of_day, NULL);
-        struct tm *newtime;
+    struct tm *tm;
+    tm = localtime(&curr_time.tv_sec);
+    if (nullptr == tm)
+    {
+      // If localtime fails, return current time without adjustment to local time.
+      return curr_time.tv_sec * 1000 + curr_time.tv_usec / 1000;
+    }
 
-        time_t long_time;
-
-        time(&long_time);
-        newtime = localtime(&long_time);  // Convert to local time.
-
-        returnValue = newtime->tm_hour;
-        returnValue = returnValue * 60 + newtime->tm_min;
-        returnValue = returnValue * 60 + newtime->tm_sec;
-        returnValue = returnValue * 1000 + 0;   // no millis
-        delete newtime;
-
-        return returnValue;
-    */
+    // Take the offset in seconds from the UTC time and add it to the current time.
+    return (curr_time.tv_sec + tm->tm_gmtoff) * 1000 + curr_time.tv_usec / 1000;
   }
 #endif
 
